@@ -1,10 +1,25 @@
 version: '3.5'
 
 services:
+  modular-monolith-example-web:
+    container_name: modular-monolith-example-web
+    build:
+      context: ./docker/nginx
+      args:
+        UID: $U_ID
+    ports:
+      - '1000:80'
+    volumes:
+      - ./public:/appdata/www/public
+    depends_on:
+      - modular-monolith-example-app
+    networks:
+      - modular-monolith-example-network
+
   modular-monolith-example-app:
     container_name: modular-monolith-example-app
     build:
-      context: ./docker
+      context: ./docker/php
       args:
         UID: $U_ID
     volumes:
@@ -17,8 +32,6 @@ services:
       XDEBUG_CLIENT_HOST: 172.17.0.1
       XDEBUG_CLIENT_PORT: 9003
       PHP_IDE_CONFIG: serverName=modular-monolith-example-server
-    ports:
-      - '1000:8000'
     networks:
       - modular-monolith-example-network
     depends_on:
@@ -43,4 +56,3 @@ networks:
 
 volumes:
   modular-monolith-example-mysql-data:
-
