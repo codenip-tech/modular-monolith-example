@@ -1,6 +1,4 @@
-# Symfony Base Repository
-
-This repository contains the basic configuration to run Symfony applications with MySQL database
+# Modular Monolith Example
 
 ## Content
 - PHP container running version 8.1.1

@@ -1,8 +1,8 @@
 version: '3.5'
 
 services:
-  symfony-app:
-    container_name: symfony-app
+  modular-monolith-example-app:
+    container_name: modular-monolith-example-app
     build:
       context: ./docker
       args:
@@ -16,16 +16,16 @@ services:
     environment:
       XDEBUG_CLIENT_HOST: 172.17.0.1
       XDEBUG_CLIENT_PORT: 9003
-      PHP_IDE_CONFIG: serverName=symfony-server
+      PHP_IDE_CONFIG: serverName=modular-monolith-example-server
     ports:
       - '1000:8000'
     networks:
-      - symfony-network
+      - modular-monolith-example-network
     depends_on:
-      - symfony-mysql
+      - modular-monolith-example-mysql
 
-  symfony-mysql:
-    container_name: symfony-mysql
+  modular-monolith-example-mysql:
+    container_name: modular-monolith-example-mysql
     image: mysql:8.0.26
     ports:
       - '3336:3306'
@@ -33,14 +33,14 @@ services:
       MYSQL_DATABASE: symfony
       MYSQL_ROOT_PASSWORD: root
     volumes:
-      - symfony-mysql-data:/var/lib/mysql
+      - modular-monolith-example-mysql-data:/var/lib/mysql
     networks:
-      - symfony-network
+      - modular-monolith-example-network
     command: [ 'mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
 
 networks:
-  symfony-network:
+  modular-monolith-example-network:
 
 volumes:
-  symfony-mysql-data:
+  modular-monolith-example-mysql-data:
 
