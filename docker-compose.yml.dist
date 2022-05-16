@@ -1,0 +1,46 @@
+version: '3.5'
+
+services:
+  symfony-app:
+    container_name: symfony-app
+    build:
+      context: ./docker
+      args:
+        UID: $U_ID
+    volumes:
+      - ./:/appdata/www
+    ###> XDEBUG 3 ###
+    # Use your client IP here
+    # Linux: run "ip a | grep docker0"
+    # Windows (with WSL2) and Mac: host.docker.internal
+    environment:
+      XDEBUG_CLIENT_HOST: 172.17.0.1
+      XDEBUG_CLIENT_PORT: 9003
+      PHP_IDE_CONFIG: serverName=symfony-server
+    ports:
+      - '1000:8000'
+    networks:
+      - symfony-network
+    depends_on:
+      - symfony-mysql
+
+  symfony-mysql:
+    container_name: symfony-mysql
+    image: mysql:8.0.26
+    ports:
+      - '3336:3306'
+    environment:
+      MYSQL_DATABASE: symfony
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - symfony-mysql-data:/var/lib/mysql
+    networks:
+      - symfony-network
+    command: [ 'mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
+
+networks:
+  symfony-network:
+
+volumes:
+  symfony-mysql-data:
+
