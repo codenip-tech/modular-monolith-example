@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="Rent\Entity\Car" table="car">
+        <id name="id" type="string" length="36" />
+
+        <field name="brand" length="50" />
+        <field name="model" length="50" />
+        <field name="color" length="50" />
+    </entity>
+</doctrine-mapping>

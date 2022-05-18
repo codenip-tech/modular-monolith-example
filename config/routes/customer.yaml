@@ -1,0 +1,4 @@
+customer_health_check:
+  path: /health-check
+  controller: Customer\Controller\HealthCheckController
+  methods: [ GET ]

@@ -1,4 +1,0 @@
-module_a_health_check:
-  path: /health-check
-  controller: ModuleA\Controller\HealthCheckController
-  methods: [ GET ]

@@ -1,8 +1,0 @@
-services:
-  _defaults:
-    autowire: true
-    autoconfigure: true
-
-  ModuleA\Controller\:
-    resource: '../../src/ModuleA/Controller/'
-    tags: [ 'controller.service_arguments' ]

@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Customer\Controller\:
+    resource: '../../src/Customer/Controller/'
+    tags: [ 'controller.service_arguments' ]

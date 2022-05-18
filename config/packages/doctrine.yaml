@@ -1,32 +1,43 @@
 doctrine:
   dbal:
-    default_connection: module_a
+    default_connection: customer_connection
     connections:
-      module_a:
-        url: '%env(resolve:DATABASE_URL)%'
-      module_b:
-        url: '%env(resolve:DATABASE_URL)%'
+      customer_connection:
+        url: '%env(resolve:DATABASE_URL_CUSTOMER)%'
+      employee_connection:
+        url: '%env(resolve:DATABASE_URL_EMPLOYEE)%'
+      rent_connection:
+        url: '%env(resolve:DATABASE_URL_RENT)%'
   orm:
-    default_entity_manager: module_a_em
+    default_entity_manager: customer_em
     entity_managers:
-      module_a_em:
-        connection: module_a
+      customer_em:
+        connection: customer_connection
         mappings:
-          ModuleA:
+          Customer:
             is_bundle: false
             type: xml
-            dir: '%kernel.project_dir%/config/orm/mapping/module_a'
-            prefix: 'ModuleA\Entity'
-            alias: ModuleA
-      module_b_em:
-        connection: module_b
+            dir: '%kernel.project_dir%/config/orm/mapping/customer'
+            prefix: 'Customer\Entity'
+            alias: Customer
+      employee_em:
+        connection: employee_connection
         mappings:
-          ModuleB:
+          Employee:
             is_bundle: false
             type: xml
-            dir: '%kernel.project_dir%/config/orm/mapping/module_b'
-            prefix: 'ModuleB\Entity'
-            alias: ModuleB
+            dir: '%kernel.project_dir%/config/orm/mapping/employee'
+            prefix: 'Employee\Entity'
+            alias: Employee
+      rent_em:
+        connection: rent_connection
+        mappings:
+          Rent:
+            is_bundle: false
+            type: xml
+            dir: '%kernel.project_dir%/config/orm/mapping/rent'
+            prefix: 'Rent\Entity'
+            alias: Rent
 
 when@test:
   doctrine:

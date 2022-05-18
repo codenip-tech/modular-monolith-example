@@ -1,7 +1,11 @@
-module_a:
-  resource: 'routes/module_a.yaml'
-  prefix: 'a'
+customer:
+  resource: 'routes/customer.yaml'
+  prefix: 'customer'
 
-module_b:
-  resource: 'routes/module_b.yaml'
-  prefix: 'b'
+employee:
+  resource: 'routes/employee.yaml'
+  prefix: 'employee'
+
+rent:
+  resource: 'routes/rent.yaml'
+  prefix: 'rent'

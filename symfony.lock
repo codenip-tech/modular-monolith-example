@@ -1,4 +1,13 @@
 {
+    "composer/pcre": {
+        "version": "3.0.0"
+    },
+    "composer/semver": {
+        "version": "3.3.2"
+    },
+    "composer/xdebug-handler": {
+        "version": "3.0.3"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -77,11 +86,26 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.12"
     },
     "laminas/laminas-code": {
         "version": "4.5.1"
+    },
+    "php-cs-fixer/diff": {
+        "version": "v2.0.2"
     },
     "psr/cache": {
         "version": "2.0.0"
@@ -180,6 +204,9 @@
     "symfony/http-kernel": {
         "version": "v5.4.8"
     },
+    "symfony/options-resolver": {
+        "version": "v5.4.3"
+    },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.25.0"
     },
@@ -200,6 +227,9 @@
     },
     "symfony/polyfill-uuid": {
         "version": "v1.25.0"
+    },
+    "symfony/process": {
+        "version": "v5.4.8"
     },
     "symfony/proxy-manager-bridge": {
         "version": "v5.4.6"
