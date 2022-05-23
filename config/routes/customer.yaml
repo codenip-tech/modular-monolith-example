@@ -1,4 +1,9 @@
 customer_health_check:
   path: /health-check
-  controller: Customer\Controller\HealthCheckController
+  controller: Customer\Infrastructure\Controller\HealthCheckController
   methods: [ GET ]
+
+create_customer:
+  path: /create
+  controller: Customer\Infrastructure\Controller\Customer\CreateCustomerController
+  methods: [ POST ]

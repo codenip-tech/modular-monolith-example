@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Customer\Entity;
+namespace Customer\Domain\Model;
 
 class Customer
 {
@@ -10,16 +10,17 @@ class Customer
         private readonly string $id,
         private string $name,
         private string $address,
-        private int $age
+        private int $age,
+        private readonly string $employeeId,
     ) {
     }
 
-    public function getId(): string
+    public function id(): string
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function name(): string
     {
         return $this->name;
     }
@@ -29,7 +30,7 @@ class Customer
         $this->name = $name;
     }
 
-    public function getAddress(): string
+    public function address(): string
     {
         return $this->address;
     }
@@ -39,7 +40,7 @@ class Customer
         $this->address = $address;
     }
 
-    public function getAge(): int
+    public function age(): int
     {
         return $this->age;
     }
@@ -47,5 +48,10 @@ class Customer
     public function setAge(int $age): void
     {
         $this->age = $age;
+    }
+
+    public function employeeId(): string
+    {
+        return $this->employeeId;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Employee\Repository;
+namespace Employee\Repository;
 
 use Employee\Entity\Employee;
 

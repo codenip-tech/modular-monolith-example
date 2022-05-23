@@ -3,6 +3,14 @@ services:
     autowire: true
     autoconfigure: true
 
-  Customer\Controller\:
-    resource: '../../src/Customer/Controller/'
+  Customer\:
+    resource: '../../src/Customer/'
+    exclude:
+      - '../../src/Domain/Entity/'
+      - '../../src/Customer/Infrastructure/Database/ORM/Doctrine/Entity/'
+      - '../../src/Kernel.php'
+      - '../../src/Tests/'
+
+  Customer\Infrastructure\Controller\:
+    resource: '../../src/Customer/Infrastructure/Controller/'
     tags: [ 'controller.service_arguments' ]

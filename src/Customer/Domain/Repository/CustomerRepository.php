@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Customer\Repository;
+namespace Customer\Domain\Repository;
 
-use Customer\Entity\Customer;
+use Customer\Domain\Model\Customer;
 
 interface CustomerRepository
 {

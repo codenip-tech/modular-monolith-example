@@ -23,7 +23,9 @@ final class Version20220518191517 extends AbstractMigration
                     `name` VARCHAR(50) NOT NULL,
                     `address` VARCHAR(100) NOT NULL,
                     `age` SMALLINT NOT NULL,
-                    INDEX IDX_customer_name (`name`)
+                    `employee_id` CHAR(36) NOT NULL,
+                    INDEX IDX_customer_name (`name`),
+                    INDEX IDX_employee_id (`employee_id`)
                 );
 
                 CREATE TABLE `employee_db`.`employee` (

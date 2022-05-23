@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Employee\Repository;
 
-use App\Employee\Repository\EmployeeRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
