@@ -1,0 +1,10 @@
+doctrine:
+  dbal:
+    default_connection: customer_connection
+    connections:
+      customer_connection:
+        url: '%env(resolve:DATABASE_URL_CUSTOMER)%'
+      employee_connection:
+        url: '%env(resolve:DATABASE_URL_EMPLOYEE)%'
+      rent_connection:
+        url: '%env(resolve:DATABASE_URL_RENT)%'
