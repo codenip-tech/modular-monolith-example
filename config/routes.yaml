@@ -1,5 +1,6 @@
 customer:
-  resource: 'routes/customer.yaml'
+  resource: '../src/Customer/Infrastructure/config/routes'
+  type: directory
   prefix: 'customer'
 
 employee:

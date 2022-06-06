@@ -1,0 +1,16 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Customer\:
+    resource: '../../../../Customer/'
+    exclude:
+      - '../../../../Domain/Entity/'
+      - '../../../../Customer/Infrastructure/Database/ORM/Doctrine/Entity/'
+      - '../../../../Kernel.php'
+      - '../../../../Tests/'
+
+  Customer\Infrastructure\Controller\:
+    resource: '../../../../Customer/Infrastructure/Controller/'
+    tags: [ 'controller.service_arguments' ]
