@@ -21,9 +21,9 @@ class CreateCustomerControllerTest extends CustomerControllerTestBase
             'employeeId' => 'd368263a-ab71-4587-960d-cfe9725c373f',
         ];
 
-        $this->client->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
+        self::$client->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
 
-        $response = $this->client->getResponse();
+        $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
@@ -32,9 +32,9 @@ class CreateCustomerControllerTest extends CustomerControllerTestBase
 
         $generatedCustomerId = $responseData['customerId'];
 
-        $this->client->request(Request::METHOD_GET, \sprintf('/customer/%s', $generatedCustomerId));
+        self::$client->request(Request::METHOD_GET, \sprintf('/customer/%s', $generatedCustomerId));
 
-        $response = $this->client->getResponse();
+        $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
