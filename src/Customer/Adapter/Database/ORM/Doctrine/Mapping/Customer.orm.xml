@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity name="Customer\Domain\Model\Customer" table="customer">
+        <id name="id" type="string" />
+
+        <field name="name" length="50" />
+        <field name="address" length="100" />
+        <field name="age" type="integer" />
+        <field name="employeeId" column="employee_id" length="36" />
+    </entity>
+</doctrine-mapping>

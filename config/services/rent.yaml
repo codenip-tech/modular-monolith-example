@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Rent\Controller\:
+    resource: '../../src/Rent/Controller/'
+    tags: [ 'controller.service_arguments' ]

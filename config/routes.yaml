@@ -1,3 +1,11 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+customer:
+  resource: 'routes/customer.yaml'
+  prefix: 'customer'
+
+employee:
+  resource: 'routes/employee.yaml'
+  prefix: 'employee'
+
+rent:
+  resource: 'routes/rent.yaml'
+  prefix: 'rent'

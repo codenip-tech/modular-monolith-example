@@ -1,0 +1,65 @@
+doctrine:
+  dbal:
+    default_connection: customer_connection
+    connections:
+      customer_connection:
+        url: '%env(resolve:DATABASE_URL_CUSTOMER)%'
+      employee_connection:
+        url: '%env(resolve:DATABASE_URL_EMPLOYEE)%'
+      rent_connection:
+        url: '%env(resolve:DATABASE_URL_RENT)%'
+  orm:
+    default_entity_manager: customer_em
+    entity_managers:
+      customer_em:
+        connection: customer_connection
+        mappings:
+          Customer:
+            is_bundle: false
+            type: xml
+            dir: '%kernel.project_dir%/src/Customer/Adapter/Database/ORM/Doctrine/Mapping'
+            prefix: 'Customer\Domain\Model'
+            alias: Customer\Domain\Model
+      employee_em:
+        connection: employee_connection
+        mappings:
+          Employee:
+            is_bundle: false
+            type: xml
+            dir: '%kernel.project_dir%/config/orm/mapping/employee'
+            prefix: 'Employee\Entity'
+            alias: Employee
+      rent_em:
+        connection: rent_connection
+        mappings:
+          Rent:
+            is_bundle: false
+            type: xml
+            dir: '%kernel.project_dir%/config/orm/mapping/rent'
+            prefix: 'Rent\Entity'
+            alias: Rent
+
+when@test:
+  doctrine:
+    dbal:
+      # "TEST_TOKEN" is typically set by ParaTest
+      dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+
+when@prod:
+  doctrine:
+    orm:
+      auto_generate_proxy_classes: false
+      query_cache_driver:
+        type: pool
+        pool: doctrine.system_cache_pool
+      result_cache_driver:
+        type: pool
+        pool: doctrine.result_cache_pool
+
+  framework:
+    cache:
+      pools:
+        doctrine.result_cache_pool:
+          adapter: cache.app
+        doctrine.system_cache_pool:
+          adapter: cache.system
