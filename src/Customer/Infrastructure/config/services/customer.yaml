@@ -6,11 +6,8 @@ services:
   Customer\:
     resource: '../../../../Customer/'
     exclude:
-      - '../../../../Domain/Entity/'
-      - '../../../../Customer/Infrastructure/Database/ORM/Doctrine/Entity/'
-      - '../../../../Kernel.php'
-      - '../../../../Tests/'
+      - '../../../Domain/Model/'
 
-  Customer\Infrastructure\Controller\:
-    resource: '../../../../Customer/Infrastructure/Controller/'
+  Customer\Adapter\Framework\Http\Controller\:
+    resource: '../../../../Customer/Adapter/Framework/Http/Controller/'
     tags: [ 'controller.service_arguments' ]

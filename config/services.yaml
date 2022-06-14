@@ -1,5 +1,5 @@
 imports:
-  - { resource: 'services/customer.yaml' }
-    - { resource: '../src/Customer/Infrastructure/config/services/customer.yaml' }
-    - { resource: 'services/employee.yaml' }
+  - { resource: '../src/Customer/Infrastructure/config/services/customer.yaml' }
+  - { resource: '../src/Employee/Infrastructure/config/services/employee.yaml' }
+  - { resource: '../src/Rent/Infrastructure/config/services/rent.yaml' }
 
