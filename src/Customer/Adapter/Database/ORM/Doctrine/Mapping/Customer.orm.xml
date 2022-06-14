@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
-    <entity name="Customer\Infrastructure\Database\ORM\Doctrine\Entity\DoctrineCustomer" table="customer">
+    <entity name="Customer\Domain\Model\Customer" table="customer">
         <id name="id" type="string" />
 
         <field name="name" length="50" />

@@ -104,6 +104,9 @@
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
+    "monolog/monolog": {
+        "version": "2.6.0"
+    },
     "myclabs/deep-copy": {
         "version": "1.11.0"
     },
@@ -313,6 +316,21 @@
     },
     "symfony/http-kernel": {
         "version": "v5.4.8"
+    },
+    "symfony/monolog-bridge": {
+        "version": "v5.4.3"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.7",
+            "ref": "213676c4ec929f046dfde5ea8e97625b81bc0578"
+        },
+        "files": [
+            "config/packages/monolog.yaml"
+        ]
     },
     "symfony/options-resolver": {
         "version": "v5.4.3"

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Customer\Application\CreateCustomer\DTO;
+namespace Customer\Application\UseCase\Customer\CreateCustomer\DTO;
 
 class CreateCustomerOutputDTO
 {

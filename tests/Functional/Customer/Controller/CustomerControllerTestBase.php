@@ -10,21 +10,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CustomerControllerTestBase extends WebTestCase
 {
-    protected ?AbstractBrowser $client;
+    protected static ?AbstractBrowser $client = null;
 
     public function setUp(): void
     {
-        $this->client = static::createClient();
-        $this->client->setServerParameter('CONTENT_TYPE', 'application/json');
-    }
-
-    public function tearDown(): void
-    {
-        $this->client = null;
+        if (null === self::$client) {
+            self::$client = static::createClient();
+            self::$client->setServerParameter('CONTENT_TYPE', 'application/json');
+        }
     }
 
     protected function getResponseData(Response $response): array
     {
-        return (array) \json_decode($response->getContent(), true);
+        return (array) \json_decode($response->getContent(), true, 512, \JSON_THROW_ON_ERROR);
     }
 }

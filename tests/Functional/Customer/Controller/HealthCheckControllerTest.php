@@ -13,9 +13,9 @@ class HealthCheckControllerTest extends CustomerControllerTestBase
 
     public function testCustomerHealthCheck(): void
     {
-        $this->client->request(Request::METHOD_GET, self::ENDPOINT);
+        self::$client->request(Request::METHOD_GET, self::ENDPOINT);
 
-        $response = $this->client->getResponse();
+        $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
