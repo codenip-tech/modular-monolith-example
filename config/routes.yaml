@@ -1,5 +1,5 @@
 customer:
-  resource: '../src/Customer/Infrastructure/config/routes'
+  resource: '../src/Customer/Adapter/Framework/Config/Routes'
   type: directory
   prefix: 'customer'
 
