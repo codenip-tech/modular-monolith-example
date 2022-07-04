@@ -18,7 +18,7 @@ class CreateCustomer
 
     public function handle(CreateCustomerInputDTO $dto): CreateCustomerOutputDTO
     {
-        $customer = new Customer(Uuid::random()->value(), $dto->name, $dto->address, $dto->age, $dto->employeeId);
+        $customer = Customer::create(Uuid::random()->value(), $dto->name, $dto->address, $dto->age, $dto->employeeId);
 
         $this->repository->save($customer);
 
