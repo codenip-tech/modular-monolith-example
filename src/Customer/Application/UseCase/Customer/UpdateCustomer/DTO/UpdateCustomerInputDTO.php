@@ -7,7 +7,6 @@ namespace Customer\Application\UseCase\Customer\UpdateCustomer\DTO;
 use Customer\Domain\Model\Customer;
 use Customer\Domain\Validation\Traits\AssertLengthRangeTrait;
 use Customer\Domain\Validation\Traits\AssertMinimumAgeTrait;
-
 use Customer\Domain\Validation\Traits\AssertNotNullTrait;
 
 class UpdateCustomerInputDTO
