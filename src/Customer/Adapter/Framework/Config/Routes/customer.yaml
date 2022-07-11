@@ -12,3 +12,8 @@ get_customer_by_id:
   path: /{id}
   controller: Customer\Adapter\Framework\Http\Controller\Customer\GetCustomerByIdController
   methods: [ GET ]
+
+update_customer:
+  path: /{id}
+  controller: Customer\Adapter\Framework\Http\Controller\Customer\UpdateCustomerController
+  methods: [ PATCH ]
