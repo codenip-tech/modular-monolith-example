@@ -53,3 +53,7 @@ code-style:
 
 ssh-be: ## bash into the be container
 	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} bash
+
+.PHONY: tests
+tests:
+	U_ID=${UID} docker exec -it --user ${UID} ${DOCKER_BE} vendor/bin/simple-phpunit -c phpunit.xml.dist
