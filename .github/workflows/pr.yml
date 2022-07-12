@@ -21,4 +21,4 @@ jobs:
       - name: Run coding style check
         run: make code-style-check
       - name: Run tests
-        run: make tests
+        run: rm .env && make tests
