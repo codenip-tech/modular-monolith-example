@@ -22,6 +22,6 @@ class CustomerControllerTestBase extends WebTestCase
 
     protected function getResponseData(Response $response): array
     {
-        return (array) \json_decode($response->getContent(), true);
+        return (array) \json_decode($response->getContent(), true, 512, \JSON_THROW_ON_ERROR);
     }
 }

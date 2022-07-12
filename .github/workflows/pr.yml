@@ -14,8 +14,6 @@ jobs:
         run: cp -n docker-compose.yml.dist docker-compose.yml && docker-compose -f docker-compose.yml pull
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
-      - name: copy .env to .env.local for testing
-        run: cp -n .env .env.local
       - name: Prepare containers
         run: make start && make composer-install
       - name: Run coding style check
