@@ -14,6 +14,8 @@ jobs:
         run: docker-compose -f docker-compose.yml.dist pull
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
+      - name: Wait some time for MySQL container
+        run: sleep 10
       - name: Prepare containers
         run: make start && make prepare
       - name: Run coding style check
