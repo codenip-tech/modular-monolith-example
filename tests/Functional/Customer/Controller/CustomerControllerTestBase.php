@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Customer\Controller;
 
+use JsonException;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +24,11 @@ class CustomerControllerTestBase extends WebTestCase
 
     protected function getResponseData(Response $response): array
     {
-        return (array) \json_decode($response->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+        try {
+            return (array) \json_decode($response->getContent(), true, 512, \JSON_THROW_ON_ERROR);
+        } catch (JsonException $e) {
+            \var_dump($e);
+            throw $e;
+        }
     }
 }

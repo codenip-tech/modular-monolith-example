@@ -6,6 +6,10 @@ namespace Customer\Domain\Model;
 
 class Customer
 {
+    public const NAME_MIN_LENGTH = 2;
+    public const NAME_MAX_LENGTH = 10;
+    public const MIN_AGE = 18;
+
     private function __construct(
         private readonly string $id,
         private string $name,

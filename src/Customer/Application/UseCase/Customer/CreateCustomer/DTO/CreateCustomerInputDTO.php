@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Customer\Application\UseCase\Customer\CreateCustomer\DTO;
 
-use Customer\Domain\Exception\InvalidArgumentException;
+use Customer\Domain\Model\Customer;
+use Customer\Domain\Validation\Traits\AssertLengthRangeTrait;
+use Customer\Domain\Validation\Traits\AssertMinimumAgeTrait;
 use Customer\Domain\Validation\Traits\AssertNotNullTrait;
 
 class CreateCustomerInputDTO
 {
     use AssertNotNullTrait;
+    use AssertLengthRangeTrait;
+    use AssertMinimumAgeTrait;
 
     private const ARGS = [
         'name',
@@ -26,26 +30,12 @@ class CreateCustomerInputDTO
         public readonly ?string $employeeId
     ) {
         $this->assertNotNull(self::ARGS, [$this->name, $this->address, $this->age, $this->employeeId]);
-        $this->assertNameLength($this->name);
-        $this->assertMinimumAge($this->age);
+        $this->assertValueRangeLength($this->name, Customer::NAME_MIN_LENGTH, Customer::NAME_MAX_LENGTH);
+        $this->assertMinimumAge($this->age, Customer::MIN_AGE);
     }
 
     public static function create(?string $name, ?string $address, ?int $age, ?string $employeeId): self
     {
         return new static($name, $address, $age, $employeeId);
-    }
-
-    private function assertNameLength(string $name): void
-    {
-        if (\strlen($name) < 2 || \strlen($name) > 10) {
-            throw InvalidArgumentException::createFromArgument('name');
-        }
-    }
-
-    private function assertMinimumAge(int $age): void
-    {
-        if (self::MINIMUM_AGE > $age) {
-            throw InvalidArgumentException::createFromMessage(\sprintf('Age has to be at least %d', self::MINIMUM_AGE));
-        }
     }
 }
