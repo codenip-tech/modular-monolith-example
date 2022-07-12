@@ -18,6 +18,8 @@ jobs:
         run: cp -n .env.test .env.local
       - name: Prepare containers
         run: make start && make prepare
+      - name: Wait some time for MySQL container
+        run: sleep 10
       - name: Run coding style check
         run: make code-style-check
       - name: Run tests
