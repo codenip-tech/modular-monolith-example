@@ -11,11 +11,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Pull docker-compose
-        run: cp -n docker-compose.yml.dist docker-compose.yml && docker-compose -f docker-compose.yml pull
+        run: docker-compose -f docker-compose.yml.dist pull
       - uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
       - name: copy .env for testing
-        run: cp -n .env.test .env.local
+        run: rm .env && cp -n .env.test .env
       - name: Prepare containers
         run: make start && make prepare
       - name: Wait some time for MySQL container
