@@ -15,25 +15,28 @@ class UpdateCustomerInputDTO
     use AssertMinimumAgeTrait;
     use AssertNotNullTrait;
 
-    private const ARGS = ['id', 'age'];
+    private const ARGS = ['id'];
 
     private function __construct(
         public readonly ?string $id,
         public readonly ?string $name,
         public readonly ?string $address,
         public readonly ?int $age,
+        public readonly array $paramsToUpdate
     ) {
-        $this->assertNotNull(self::ARGS, [$this->id, $this->age]);
+        $this->assertNotNull(self::ARGS, [$this->id]);
 
         if (!\is_null($this->name)) {
             $this->assertValueRangeLength($this->name, Customer::NAME_MIN_LENGTH, Customer::NAME_MAX_LENGTH);
         }
 
-        $this->assertMinimumAge($this->age, Customer::MIN_AGE);
+        if (!\is_null($this->age)) {
+            $this->assertMinimumAge($this->age, Customer::MIN_AGE);
+        }
     }
 
-    public static function create(?string $id, ?string $name, ?string $address, ?int $age): self
+    public static function create(?string $id, ?string $name, ?string $address, ?int $age, array $paramsToUpdate): self
     {
-        return new static($id, $name, $address, $age);
+        return new static($id, $name, $address, $age, $paramsToUpdate);
     }
 }

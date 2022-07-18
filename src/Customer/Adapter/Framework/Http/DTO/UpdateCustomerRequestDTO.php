@@ -12,6 +12,7 @@ class UpdateCustomerRequestDTO implements RequestDTO
     public readonly ?string $name;
     public readonly ?string $address;
     public readonly ?int $age;
+    public readonly array $keys;
 
     public function __construct(Request $request)
     {
@@ -19,5 +20,6 @@ class UpdateCustomerRequestDTO implements RequestDTO
         $this->name = $request->request->get('name');
         $this->address = $request->request->get('address');
         $this->age = $request->request->get('age');
+        $this->keys = \array_keys($request->request->all());
     }
 }
