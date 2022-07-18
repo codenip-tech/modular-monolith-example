@@ -8,13 +8,14 @@ use Customer\Domain\Exception\ResourceNotFoundException;
 use Customer\Domain\Model\Customer;
 use Customer\Domain\Repository\CustomerRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 
 class DoctrineCustomerRepository implements CustomerRepository
 {
     private readonly ServiceEntityRepository $repository;
-    private readonly ObjectManager $manager;
+    private readonly ObjectManager|EntityManagerInterface $manager;
 
     public function __construct(ManagerRegistry $managerRegistry)
     {

@@ -26,6 +26,11 @@ class UpdateCustomerTest extends TestCase
         'name' => 'Peter',
         'address' => 'Address 111',
         'age' => 40,
+        'keys' => [
+            'name',
+            'address',
+            'age',
+        ],
     ];
 
     private const EMPLOYEE_ID = '37fb348b-891a-4b1c-a4e4-a4a68a3c6111';
@@ -45,6 +50,7 @@ class UpdateCustomerTest extends TestCase
             self::DATA_TO_UPDATE['name'],
             self::DATA_TO_UPDATE['address'],
             self::DATA_TO_UPDATE['age'],
+            self::DATA_TO_UPDATE['keys']
         );
 
         $this->useCase = new UpdateCustomer($this->customerRepository);

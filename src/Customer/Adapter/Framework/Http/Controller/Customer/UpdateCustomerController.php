@@ -18,7 +18,7 @@ class UpdateCustomerController
 
     public function __invoke(UpdateCustomerRequestDTO $request): Response
     {
-        $inputDTO = UpdateCustomerInputDTO::create($request->id, $request->name, $request->address, $request->age);
+        $inputDTO = UpdateCustomerInputDTO::create($request->id, $request->name, $request->address, $request->age, $request->keys);
 
         $responseDTO = $this->useCase->handle($inputDTO);
 
