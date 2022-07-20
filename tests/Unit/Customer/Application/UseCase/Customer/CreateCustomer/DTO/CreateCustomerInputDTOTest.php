@@ -37,7 +37,7 @@ class CreateCustomerInputDTOTest extends TestCase
     public function testCreateWithNullValues(): void
     {
         self::expectException(InvalidArgumentException::class);
-        self::expectExceptionMessage('Invalid arguments [name, age]');
+        self::expectExceptionMessage('Invalid arguments [age]');
 
         CreateCustomerInputDTO::create(
             null,
