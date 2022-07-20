@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Customer\Controller\Customer;
 
 use App\Tests\Functional\Customer\Controller\CustomerControllerTestBase;
+use Customer\Domain\Exception\ResourceNotFoundException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class UpdateCustomerControllerTest extends CustomerControllerTestBase
 {
     private const ENDPOINT = '/customer/%s';
+    private const NON_EXISTING_CUSTOMER_ID = 'e0a1878f-dd52-4eea-959d-96f589a9f234';
 
     /**
      * @dataProvider updateCustomerDataProvider
@@ -44,7 +46,22 @@ class UpdateCustomerControllerTest extends CustomerControllerTestBase
 
         $response = self::$client->getResponse();
 
-        self::assertEquals(Response::HTTP_INTERNAL_SERVER_ERROR, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
+    }
+
+    public function testUpdateNonExistingCustomer(): void
+    {
+        $payload = [
+            'name' => 'Brian',
+        ];
+
+        self::$client->request(Request::METHOD_PATCH, \sprintf(self::ENDPOINT, self::NON_EXISTING_CUSTOMER_ID), [], [], [], \json_encode($payload));
+
+        $response = self::$client->getResponse();
+        $responseData = $this->getResponseData($response);
+
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(ResourceNotFoundException::class, $responseData['class']);
     }
 
     public function updateCustomerDataProvider(): iterable
