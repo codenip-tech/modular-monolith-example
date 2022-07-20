@@ -12,14 +12,14 @@ class Customer
 
     private function __construct(
         private readonly string $id,
-        private string $name,
-        private string $address,
+        private ?string $name,
+        private ?string $address,
         private int $age,
         private readonly string $employeeId,
     ) {
     }
 
-    public static function create(string $id, string $name, string $address, int $age, string $employeeId): self
+    public static function create(string $id, ?string $name, ?string $address, int $age, string $employeeId): self
     {
         return new static($id, $name, $address, $age, $employeeId);
     }
@@ -29,22 +29,22 @@ class Customer
         return $this->id;
     }
 
-    public function name(): string
+    public function name(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
 
-    public function address(): string
+    public function address(): ?string
     {
         return $this->address;
     }
 
-    public function setAddress(string $address): void
+    public function setAddress(?string $address): void
     {
         $this->address = $address;
     }

@@ -16,8 +16,6 @@ class CreateCustomerInputDTO
     use AssertMinimumAgeTrait;
 
     private const ARGS = [
-        'name',
-        'address',
         'age',
         'employeeId',
     ];
@@ -29,8 +27,12 @@ class CreateCustomerInputDTO
         public readonly ?int $age,
         public readonly ?string $employeeId
     ) {
-        $this->assertNotNull(self::ARGS, [$this->name, $this->address, $this->age, $this->employeeId]);
-        $this->assertValueRangeLength($this->name, Customer::NAME_MIN_LENGTH, Customer::NAME_MAX_LENGTH);
+        $this->assertNotNull(self::ARGS, [$this->age, $this->employeeId]);
+
+        if (!\is_null($this->name)) {
+            $this->assertValueRangeLength($this->name, Customer::NAME_MIN_LENGTH, Customer::NAME_MAX_LENGTH);
+        }
+
         $this->assertMinimumAge($this->age, Customer::MIN_AGE);
     }
 
