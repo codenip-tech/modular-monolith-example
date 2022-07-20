@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 class UpdateCustomerControllerTest extends CustomerControllerTestBase
 {
     private const ENDPOINT = '/customer/%s';
-    private const NON_EXISTING_CUSTOMER_ID = 'e0a1878f-dd52-4eea-959d-96f589a9f234';
 
     /**
      * @dataProvider updateCustomerDataProvider
