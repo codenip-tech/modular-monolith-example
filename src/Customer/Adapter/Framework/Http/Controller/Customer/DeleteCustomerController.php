@@ -14,8 +14,7 @@ class DeleteCustomerController
 {
     public function __construct(
         private readonly DeleteCustomer $useCase
-    )
-    {
+    ) {
     }
 
     public function __invoke(DeleteCustomerRequestDTO $request): Response
