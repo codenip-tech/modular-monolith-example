@@ -17,3 +17,8 @@ update_customer:
   path: /{id}
   controller: Customer\Adapter\Framework\Http\Controller\Customer\UpdateCustomerController
   methods: [ PATCH ]
+
+delete_customer:
+  path: /{id}
+  controller: Customer\Adapter\Framework\Http\Controller\Customer\DeleteCustomerController
+  methods: [ DELETE ]
