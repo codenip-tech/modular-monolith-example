@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Customer\Application\UseCase\Customer\UpdateCustomer;
 use Customer\Application\UseCase\Customer\UpdateCustomer\DTO\UpdateCustomerInputDTO;
 use Customer\Application\UseCase\Customer\UpdateCustomer\DTO\UpdateCustomerOutputDTO;
 use Customer\Application\UseCase\Customer\UpdateCustomer\UpdateCustomer;
+use Customer\Domain\Exception\ResourceNotFoundException;
 use Customer\Domain\Model\Customer;
 use Customer\Domain\Repository\CustomerRepository;
 use PHPUnit\Framework\MockObject\MockObject;
