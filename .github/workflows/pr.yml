@@ -7,6 +7,9 @@ jobs:
   app_checks:
     name: app checks
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
