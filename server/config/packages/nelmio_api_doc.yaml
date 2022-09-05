@@ -1,0 +1,28 @@
+nelmio_api_doc:
+  documentation:
+    info:
+      title: Codenip Car Rental
+      version: 1.0.0
+    components:
+      securitySchemes:
+        Bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+    paths:
+      /api/customer/health-check:
+        get:
+          tags:
+            - Customer
+          responses:
+            200:
+              description: Module Customer running
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message: { type: string, example: Module Customer up and running }
+  areas: # to filter documented areas
+    path_patterns:
+      - ^/api(?!/doc|/doc.json$) # Accepts routes under /api except /api/doc

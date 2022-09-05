@@ -1,7 +1,7 @@
 customer:
   resource: '../src/Customer/Adapter/Framework/Config/Routes'
   type: directory
-  prefix: 'customer'
+  prefix: 'api/customer'
 
 employee:
   resource: 'routes/employee.yaml'
