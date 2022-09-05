@@ -1,7 +1,28 @@
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, Controller } from 'react-hook-form'
+import {
+  Flex,
+  Heading,
+  Input,
+  Button,
+  InputGroup,
+  Stack,
+  InputLeftElement,
+  chakra,
+  Box,
+  Link,
+  Avatar,
+  FormControl,
+  FormHelperText,
+  InputRightElement,
+  Text,
+} from '@chakra-ui/react'
+import { FaUserAlt, FaLock } from 'react-icons/fa'
+import { useState } from 'react'
+
+const CFaUserAlt = chakra(FaUserAlt)
+const CFaLock = chakra(FaLock)
 
 export default function Home() {
   const validationSchema = yup.object().shape({
@@ -20,64 +41,100 @@ export default function Home() {
     resolver: yupResolver(validationSchema),
   })
 
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleShowClick = () => setShowPassword(!showPassword)
+
   const onSubmitForm = async (data) => {
     console.log(data)
     // TODO: API call to Google OAuth
   }
 
   return (
-    <Container className={'mt-5'} fluid>
-      <Row className={'justify-content-center'}>
-        <Col md={4}>
-          <Form onSubmit={handleSubmit(onSubmitForm)}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Controller
-                control={control}
-                name="email"
-                defaultValue=""
-                render={({ field: { onChange, value, ref } }) => (
-                  <Form.Control
-                    onChange={onChange}
-                    value={value}
-                    ref={ref}
-                    isInvalid={errors.email}
-                    placeholder="Enter you email"
+    <Flex
+      flexDirection="column"
+      width="100wh"
+      height="100vh"
+      backgroundColor="gray.200"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Stack
+        flexDir="column"
+        mb="2"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Avatar bg="teal.500" />
+        <Heading color="teal.400">Codenip Car Rental</Heading>
+        <Box minW={{ base: '90%', md: '468px' }}>
+          <form onSubmit={handleSubmit(onSubmitForm)}>
+            <Stack
+              spacing={4}
+              p="1rem"
+              backgroundColor="whiteAlpha.900"
+              boxShadow="md"
+            >
+              <FormControl>
+                <InputGroup>
+                  <Controller
+                    control={control}
+                    name="email"
+                    defaultValue=""
+                    render={({ field: { onChange, value, ref } }) => (
+                      <Input
+                        type="email"
+                        placeholder="email address"
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                      />
+                    )}
                   />
-                )}
-              />
-              <Form.Text className={'text-danger'}>
-                {errors.email?.message}
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Controller
-                control={control}
-                name="password"
-                defaultValue=""
-                render={({ field: { onChange, value, ref } }) => (
-                  <Form.Control
-                    type="password"
-                    onChange={onChange}
-                    value={value}
-                    ref={ref}
-                    isInvalid={errors.password}
-                    placeholder="Enter you password"
+                </InputGroup>
+                <Text fontSize="sm" color="red.500">
+                  {errors.email?.message}
+                </Text>
+              </FormControl>
+              <FormControl>
+                <InputGroup>
+                  <Controller
+                    control={control}
+                    name="password"
+                    defaultValue=""
+                    render={({ field: { onChange, value, ref } }) => (
+                      <Input
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder="password"
+                        onChange={onChange}
+                        value={value}
+                        ref={ref}
+                      />
+                    )}
                   />
-                )}
-              />
-              <Form.Text className={'text-danger'}>
-                {errors.password?.message}
-              </Form.Text>
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+                  <InputRightElement width="4.5rem">
+                    <Button h="1.75rem" size="sm" onClick={handleShowClick}>
+                      {showPassword ? 'Hide' : 'Show'}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+                <Text fontSize="sm" color="red.500">
+                  {errors.password?.message}
+                </Text>
+              </FormControl>
+              <Button
+                borderRadius={0}
+                type="submit"
+                variant="solid"
+                colorScheme="teal"
+                width="full"
+              >
+                Login
+              </Button>
+            </Stack>
+          </form>
+        </Box>
+      </Stack>
+    </Flex>
   )
 }
