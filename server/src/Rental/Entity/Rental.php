@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Rent\Entity;
+namespace Rental\Entity;
 
-class Rent
+class Rental
 {
     public function __construct(
         private readonly string $id,

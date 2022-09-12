@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UpdateCustomerControllerTest extends CustomerControllerTestBase
 {
-    private const ENDPOINT = '/customer/%s';
+    private const ENDPOINT = '/api/customer/%s';
 
     /**
      * @dataProvider updateCustomerDataProvider

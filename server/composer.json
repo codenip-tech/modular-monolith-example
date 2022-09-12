@@ -42,7 +42,7 @@
             "App\\": "src/",
             "Employee\\": "src/Employee",
             "Customer\\": "src/Customer",
-            "Rent\\": "src/Rent"
+            "Rental\\": "src/Rental"
         }
     },
     "autoload-dev": {

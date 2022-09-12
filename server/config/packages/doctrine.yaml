@@ -6,8 +6,8 @@ doctrine:
         url: '%env(resolve:DATABASE_URL_CUSTOMER)%'
       employee_connection:
         url: '%env(resolve:DATABASE_URL_EMPLOYEE)%'
-      rent_connection:
-        url: '%env(resolve:DATABASE_URL_RENT)%'
+      rental_connection:
+        url: '%env(resolve:DATABASE_URL_RENTAL)%'
   orm:
     default_entity_manager: customer_em
     entity_managers:
@@ -29,15 +29,15 @@ doctrine:
             dir: '%kernel.project_dir%/config/orm/mapping/employee'
             prefix: 'Employee\Entity'
             alias: Employee
-      rent_em:
-        connection: rent_connection
+      rental_em:
+        connection: rental_connection
         mappings:
-          Rent:
+          rental:
             is_bundle: false
             type: xml
-            dir: '%kernel.project_dir%/config/orm/mapping/rent'
-            prefix: 'Rent\Entity'
-            alias: Rent
+            dir: '%kernel.project_dir%/config/orm/mapping/rental'
+            prefix: 'Rental\Entity'
+            alias: Rental
 
 when@test:
   doctrine:

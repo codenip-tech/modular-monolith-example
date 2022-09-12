@@ -5,8 +5,8 @@ customer:
 
 employee:
   resource: 'routes/employee.yaml'
-  prefix: 'employee'
+  prefix: 'api/employee'
 
-rent:
-  resource: 'routes/rent.yaml'
-  prefix: 'rent'
+rental:
+  resource: 'routes/rental.yaml'
+  prefix: 'api/rental'

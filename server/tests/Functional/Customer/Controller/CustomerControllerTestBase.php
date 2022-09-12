@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CustomerControllerTestBase extends WebTestCase
 {
-    protected const CREATE_CUSTOMER_ENDPOINT = '/customer/create';
+    protected const CREATE_CUSTOMER_ENDPOINT = '/api/customer/create';
     protected const NON_EXISTING_CUSTOMER_ID = 'e0a1878f-dd52-4eea-959d-96f589a9f234';
 
     protected static ?AbstractBrowser $client = null;
@@ -47,6 +47,11 @@ class CustomerControllerTestBase extends WebTestCase
         self::$client->request(Request::METHOD_POST, self::CREATE_CUSTOMER_ENDPOINT, [], [], [], \json_encode($payload));
 
         $response = self::$client->getResponse();
+
+        if (Response::HTTP_CREATED !== $response->getStatusCode()) {
+            throw new \RuntimeException('Error creating customer');
+        }
+
         $responseData = $this->getResponseData($response);
 
         return $responseData['customerId'];

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CreateCustomerControllerTest extends CustomerControllerTestBase
 {
-    private const ENDPOINT = '/customer/create';
+    private const ENDPOINT = '/api/customer/create';
 
     public function testCreateCustomerAndCheckIt(): void
     {
@@ -32,7 +32,7 @@ class CreateCustomerControllerTest extends CustomerControllerTestBase
 
         $generatedCustomerId = $responseData['customerId'];
 
-        self::$client->request(Request::METHOD_GET, \sprintf('/customer/%s', $generatedCustomerId));
+        self::$client->request(Request::METHOD_GET, \sprintf('/api/customer/%s', $generatedCustomerId));
 
         $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);

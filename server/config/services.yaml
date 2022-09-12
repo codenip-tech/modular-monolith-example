@@ -1,5 +1,5 @@
 imports:
   - { resource: '../src/Customer/Adapter/Framework/Config/Services/customer.yaml' }
   - { resource: '../src/Employee/Infrastructure/config/services/employee.yaml' }
-  - { resource: '../src/Rent/Infrastructure/config/services/rent.yaml' }
+  - { resource: '../src/Rental/Infrastructure/config/services/rental.yaml' }
 

@@ -10,6 +10,7 @@ nelmio_api_doc:
           scheme: bearer
           bearerFormat: JWT
     paths:
+      ### CUSTOMER PATHS ###
       /api/customer/health-check:
         get:
           tags:
@@ -22,7 +23,38 @@ nelmio_api_doc:
                   schema:
                     type: object
                     properties:
-                      message: { type: string, example: Module Customer up and running }
+                      message: { type: string, example: Module Customer up and running! }
+
+      ### CUSTOMER PATHS ###
+      /api/employee/health-check:
+        get:
+          tags:
+            - Employee
+          responses:
+            200:
+              description: Module Employee running
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message: { type: string, example: Module Employee up and running! }
+
+      ### CUSTOMER PATHS ###
+      /api/rental/health-check:
+        get:
+          tags:
+            - Rental
+          responses:
+            200:
+              description: Module Rental running
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message: { type: string, example: Module Rental up and running! }
+
   areas: # to filter documented areas
     path_patterns:
       - ^/api(?!/doc|/doc.json$) # Accepts routes under /api except /api/doc

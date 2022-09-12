@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DeleteCustomerControllerTest extends CustomerControllerTestBase
 {
-    private const ENDPOINT = '/customer/%s';
+    private const ENDPOINT = '/api/customer/%s';
 
     public function testDeleteCustomer(): void
     {

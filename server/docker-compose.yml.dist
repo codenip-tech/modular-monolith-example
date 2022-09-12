@@ -38,7 +38,7 @@ services:
       - modular-monolith-example-mysql
 
   modular-monolith-example-mysql:
-    # platform: linux/x86_64 # Uncomment this if you are using an Apple Silicon machine
+    # platform: linux/x86_64 # Uncomment this for Apple Silicon machines
     container_name: modular-monolith-example-mysql
     build:
       context: ./docker/database
