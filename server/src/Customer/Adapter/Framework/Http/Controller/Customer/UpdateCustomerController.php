@@ -21,7 +21,7 @@ class UpdateCustomerController extends AbstractController
     #[Route('/{id}', name: 'update_customer', methods: ['PATCH'])]
     public function __invoke(UpdateCustomerRequestDTO $request): Response
     {
-        $inputDTO = UpdateCustomerInputDTO::create($request->id, $request->name, $request->address, $request->age, $request->keys);
+        $inputDTO = UpdateCustomerInputDTO::create($request->id, $request->name, $request->email, $request->address, $request->age, $request->keys);
 
         $responseDTO = $this->useCase->handle($inputDTO);
 

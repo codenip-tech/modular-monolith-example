@@ -21,7 +21,7 @@ class CreateCustomerController extends AbstractController
     #[Route('', name: 'create_customer', methods: ['POST'])]
     public function __invoke(CreateCustomerRequestDTO $request): Response
     {
-        $responseDTO = $this->service->handle(CreateCustomerInputDTO::create($request->name, $request->address, $request->age, $request->employeeId));
+        $responseDTO = $this->service->handle(CreateCustomerInputDTO::create($request->name, $request->email, $request->address, $request->age, $request->employeeId));
 
         return new JsonResponse(['customerId' => $responseDTO->id], Response::HTTP_CREATED);
     }

@@ -17,6 +17,7 @@ class UpdateCustomerOutputDTO
         return new static([
             'id' => $customer->id(),
             'name' => $customer->name(),
+            'email' => $customer->email(),
             'address' => $customer->address(),
             'age' => $customer->age(),
             'employeeId' => $customer->employeeId(),

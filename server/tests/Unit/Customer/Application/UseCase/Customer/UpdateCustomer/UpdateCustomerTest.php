@@ -18,6 +18,7 @@ class UpdateCustomerTest extends TestCase
     private const DATA = [
         'id' => '37fb348b-891a-4b1c-a4e4-a4a68a3c6bae',
         'name' => 'Brian',
+        'email' => 'brian@api.com',
         'address' => 'Test address 123',
         'age' => 20,
     ];
@@ -25,6 +26,7 @@ class UpdateCustomerTest extends TestCase
     private const DATA_TO_UPDATE = [
         'id' => '37fb348b-891a-4b1c-a4e4-a4a68a3c6bae',
         'name' => 'Peter',
+        'email' => 'peter@api.com',
         'address' => 'Address 111',
         'age' => 40,
         'keys' => [
@@ -49,6 +51,7 @@ class UpdateCustomerTest extends TestCase
         $this->inputDTO = UpdateCustomerInputDTO::create(
             self::DATA_TO_UPDATE['id'],
             self::DATA_TO_UPDATE['name'],
+            self::DATA_TO_UPDATE['email'],
             self::DATA_TO_UPDATE['address'],
             self::DATA_TO_UPDATE['age'],
             self::DATA_TO_UPDATE['keys']
@@ -62,6 +65,7 @@ class UpdateCustomerTest extends TestCase
         $customer = Customer::create(
             self::DATA['id'],
             self::DATA['name'],
+            self::DATA['email'],
             self::DATA['address'],
             self::DATA['age'],
             self::EMPLOYEE_ID

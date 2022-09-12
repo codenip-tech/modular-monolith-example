@@ -31,6 +31,7 @@ class DeleteCustomerTest extends TestCase
         $customer = Customer::create(
             $customerId,
             'Juan',
+            'peter@api.com',
             'Fake street 123',
             30,
             '37fb348b-891a-4b1c-a4e4-a4a68a3c6111',

@@ -20,8 +20,9 @@ final class Version20220518191518 extends AbstractMigration
             <<<SQL
                 CREATE TABLE `customer_db_test`.`customer` (
                     `id` CHAR(36) PRIMARY KEY NOT NULL,
-                    `name` VARCHAR(50) NOT NULL,
-                    `address` VARCHAR(100) NOT NULL,
+                    `name` VARCHAR(50) DEFAULT NULL,
+                    `email` VARCHAR(100) DEFAULT NULL,
+                    `address` VARCHAR(100) DEFAULT NULL,
                     `age` SMALLINT NOT NULL,
                     `employee_id` CHAR(36) NOT NULL,
                     INDEX IDX_customer_name (`name`),
@@ -30,15 +31,17 @@ final class Version20220518191518 extends AbstractMigration
 
                 CREATE TABLE `employee_db_test`.`employee` (
                     `id` CHAR(36) PRIMARY KEY NOT NULL,
-                    `name` VARCHAR(50) NOT NULL,
+                    `name` VARCHAR(50) DEFAULT NULL,
+                    `email` VARCHAR(100) DEFAULT NULL,
+                    `password` VARCHAR(250) DEFAULT NULL,
                     INDEX IDX_employee_name (`name`)
                 );
 
                 CREATE TABLE `rental_db_test`.`car` (
                     `id` CHAR(36) PRIMARY KEY NOT NULL,
-                    `brand` VARCHAR(50) NOT NULL,
-                    `model` VARCHAR(50) NOT NULL,
-                    `color` VARCHAR(50) NOT NULL,
+                    `brand` VARCHAR(50) DEFAULT NULL,
+                    `model` VARCHAR(50) DEFAULT NULL,
+                    `color` VARCHAR(50) DEFAULT NULL,
                     INDEX IDX_car_brand (`brand`),
                     INDEX IDX_car_model (`model`),
                     INDEX IDX_car_color (`color`)
@@ -49,6 +52,8 @@ final class Version20220518191518 extends AbstractMigration
                     `customer_id` CHAR(36) NOT NULL,
                     `employee_id` CHAR(36) NOT NULL,
                     `car_id` CHAR(36) NOT NULL,
+                    `start_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    `end_date` DATETIME DEFAULT NULL,
                     INDEX IDX_rental_customer_id (`customer_id`),
                     INDEX IDX_rental_employee_id (`employee_id`),
                     INDEX IDX_rental_car_id (`car_id`),
