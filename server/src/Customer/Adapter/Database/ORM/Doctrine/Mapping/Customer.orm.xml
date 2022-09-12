@@ -4,6 +4,7 @@
         <id name="id" type="string" />
 
         <field name="name" length="50" />
+        <field name="email" length="100" />
         <field name="address" length="100" />
         <field name="age" type="integer" />
         <field name="employeeId" column="employee_id" length="36" />

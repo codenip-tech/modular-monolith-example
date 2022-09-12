@@ -12,6 +12,7 @@ class CreateCustomerInputDTOTest extends TestCase
 {
     private const VALUES = [
         'name' => 'Peter',
+        'email' => 'peter@api.com',
         'address' => 'Fake street 123',
         'age' => 30,
         'employeeId' => 'ba0f3716-528e-41d8-83ca-be2a48efa7ac',
@@ -21,6 +22,7 @@ class CreateCustomerInputDTOTest extends TestCase
     {
         $dto = CreateCustomerInputDTO::create(
             self::VALUES['name'],
+            self::VALUES['email'],
             self::VALUES['address'],
             self::VALUES['age'],
             self::VALUES['employeeId'],
@@ -41,6 +43,7 @@ class CreateCustomerInputDTOTest extends TestCase
 
         CreateCustomerInputDTO::create(
             null,
+            self::VALUES['email'],
             self::VALUES['address'],
             null,
             self::VALUES['employeeId'],
@@ -54,6 +57,7 @@ class CreateCustomerInputDTOTest extends TestCase
 
         CreateCustomerInputDTO::create(
             'A',
+            self::VALUES['email'],
             self::VALUES['address'],
             self::VALUES['age'],
             self::VALUES['employeeId'],
@@ -67,6 +71,7 @@ class CreateCustomerInputDTOTest extends TestCase
 
         CreateCustomerInputDTO::create(
             'asdfghrtyuiasdwerasdasd',
+            self::VALUES['email'],
             self::VALUES['address'],
             self::VALUES['age'],
             self::VALUES['employeeId'],
@@ -80,6 +85,7 @@ class CreateCustomerInputDTOTest extends TestCase
 
         CreateCustomerInputDTO::create(
             self::VALUES['name'],
+            self::VALUES['email'],
             self::VALUES['address'],
             17,
             self::VALUES['employeeId'],

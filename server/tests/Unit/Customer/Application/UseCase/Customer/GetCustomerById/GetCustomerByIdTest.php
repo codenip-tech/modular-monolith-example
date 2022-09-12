@@ -18,6 +18,7 @@ class GetCustomerByIdTest extends TestCase
     private const CUSTOMER_DATA = [
         'id' => '9b5c0b1f-09bf-4fed-acc9-fcaafc933a19',
         'name' => 'Peter',
+        'email' => 'peter@api.com',
         'address' => 'Fake street 123',
         'age' => 30,
         'employeeId' => '9b5c0b1f-09bf-4fed-acc9-fcaafc933000',
@@ -41,6 +42,7 @@ class GetCustomerByIdTest extends TestCase
         $customer = Customer::create(
             self::CUSTOMER_DATA['id'],
             self::CUSTOMER_DATA['name'],
+            self::CUSTOMER_DATA['email'],
             self::CUSTOMER_DATA['address'],
             self::CUSTOMER_DATA['age'],
             self::CUSTOMER_DATA['employeeId'],
@@ -58,6 +60,7 @@ class GetCustomerByIdTest extends TestCase
 
         self::assertEquals(self::CUSTOMER_DATA['id'], $responseDTO->id);
         self::assertEquals(self::CUSTOMER_DATA['name'], $responseDTO->name);
+        self::assertEquals(self::CUSTOMER_DATA['email'], $responseDTO->email);
         self::assertEquals(self::CUSTOMER_DATA['address'], $responseDTO->address);
         self::assertEquals(self::CUSTOMER_DATA['age'], $responseDTO->age);
         self::assertEquals(self::CUSTOMER_DATA['employeeId'], $responseDTO->employeeId);

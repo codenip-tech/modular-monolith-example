@@ -39,6 +39,7 @@ class CustomerControllerTestBase extends WebTestCase
     {
         $payload = [
             'name' => 'Peter',
+            'email' => 'peter@api.com',
             'address' => 'Fake street 123',
             'age' => 30,
             'employeeId' => 'd368263a-ab71-4587-960d-cfe9725c373f',

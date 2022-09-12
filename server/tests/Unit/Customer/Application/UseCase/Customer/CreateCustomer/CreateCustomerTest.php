@@ -16,6 +16,7 @@ class CreateCustomerTest extends TestCase
 {
     private const VALUES = [
         'name' => 'Peter',
+        'email' => 'peter@api.com',
         'address' => 'Fake street 123',
         'age' => 30,
         'employeeId' => 'ba0f3716-528e-41d8-83ca-be2a48efa7ac',
@@ -34,6 +35,7 @@ class CreateCustomerTest extends TestCase
     {
         $dto = CreateCustomerInputDTO::create(
             self::VALUES['name'],
+            self::VALUES['email'],
             self::VALUES['address'],
             self::VALUES['age'],
             self::VALUES['employeeId'],
@@ -45,6 +47,7 @@ class CreateCustomerTest extends TestCase
             ->with(
                 $this->callback(function (Customer $customer): bool {
                     return $customer->name() === self::VALUES['name']
+                        && $customer->email() === self::VALUES['email']
                         && $customer->address() === self::VALUES['address']
                         && $customer->age() === self::VALUES['age']
                         && $customer->employeeId() === self::VALUES['employeeId'];
