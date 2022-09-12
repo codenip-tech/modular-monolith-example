@@ -11,10 +11,10 @@ nelmio_api_doc:
           bearerFormat: JWT
     paths:
       ### CUSTOMER PATHS ###
-      /api/customer/health-check:
+      /api/customers/health-check:
         get:
           tags:
-            - Customer
+            - Customers
           responses:
             200:
               description: Module Customer running
@@ -24,8 +24,79 @@ nelmio_api_doc:
                     type: object
                     properties:
                       message: { type: string, example: Module Customer up and running! }
+      /api/customers:
+        post:
+          tags:
+            - Customers
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name: { type: string, example: Peter }
+                    address: { type: string, example: Fake street 123 }
+                    age: { type: number, example: 30 }
+                    employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+          responses:
+            201:
+              description: Customer created
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      customerId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+      /api/customers/{id}:
+        get:
+          tags:
+            - Customers
+          responses:
+            200:
+              description: Customer data
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+                      name: { type: string, example: Peter }
+                      address: { type: string, example: Fake street 123 }
+                      age: { type: number, example: 30 }
+                      employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+        patch:
+          tags:
+            - Customers
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name: { type: string, example: Peter }
+                    address: { type: string, example: Fake street 123 }
+                    age: { type: number, example: 30 }
+          responses:
+            200:
+              description: Customer data
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+                      name: { type: string, example: Peter }
+                      address: { type: string, example: Fake street 123 }
+                      age: { type: number, example: 30 }
+                      employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+        delete:
+          tags:
+            - Customers
+          responses:
+            204:
+              description: Customer deleted
 
-      ### CUSTOMER PATHS ###
+      ### EMPLOYEE PATHS ###
       /api/employee/health-check:
         get:
           tags:
@@ -40,7 +111,7 @@ nelmio_api_doc:
                     properties:
                       message: { type: string, example: Module Employee up and running! }
 
-      ### CUSTOMER PATHS ###
+      ### RENTAL PATHS ###
       /api/rental/health-check:
         get:
           tags:
