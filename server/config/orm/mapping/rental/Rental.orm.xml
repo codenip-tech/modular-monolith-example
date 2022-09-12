@@ -12,6 +12,6 @@
             <index columns="customer_id" />
         </indexes>
 
-        <many-to-one field="car" target-entity="rental\Entity\Car" />
+        <many-to-one field="car" target-entity="Rental\Entity\Car" />
     </entity>
 </doctrine-mapping>
