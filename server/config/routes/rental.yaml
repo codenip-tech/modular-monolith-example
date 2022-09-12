@@ -1,0 +1,4 @@
+rental_health_check:
+  path: /health-check
+  controller: Rental\Controller\HealthCheckController
+  methods: [ GET ]

@@ -10,6 +10,9 @@
         "doctrine/doctrine-bundle": "^2.6",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.12",
+        "nelmio/api-doc-bundle": "^4.9",
+        "sensio/framework-extra-bundle": "^6.2",
+        "symfony/asset": "5.4.*",
         "symfony/console": "5.4.*",
         "symfony/dotenv": "5.4.*",
         "symfony/flex": "^1.17|^2",
@@ -17,8 +20,11 @@
         "symfony/monolog-bundle": "^3.8",
         "symfony/proxy-manager-bridge": "5.4.*",
         "symfony/runtime": "5.4.*",
+        "symfony/twig-bundle": "5.4.*",
         "symfony/uid": "5.4.*",
-        "symfony/yaml": "5.4.*"
+        "symfony/yaml": "5.4.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "config": {
         "allow-plugins": {
@@ -37,7 +43,7 @@
             "App\\": "src/",
             "Employee\\": "src/Employee",
             "Customer\\": "src/Customer",
-            "Rent\\": "src/Rent"
+            "Rental\\": "src/Rental"
         }
     },
     "autoload-dev": {

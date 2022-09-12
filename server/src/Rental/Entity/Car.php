@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Rent\Entity;
+namespace Rental\Entity;
 
 class Car
 {

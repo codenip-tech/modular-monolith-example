@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
-    <entity name="Rent\Entity\Rent" table="rent">
+    <entity name="Rental\Entity\Rental" table="rental">
         <id name="id" type="string" length="36"/>
 
         <field name="customerId" length="36" />
@@ -12,6 +12,6 @@
             <index columns="customer_id" />
         </indexes>
 
-        <many-to-one field="car" target-entity="Rent\Entity\Car" />
+        <many-to-one field="car" target-entity="rental\Entity\Car" />
     </entity>
 </doctrine-mapping>

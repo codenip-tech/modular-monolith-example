@@ -1,0 +1,131 @@
+nelmio_api_doc:
+  documentation:
+    info:
+      title: Codenip Car Rental
+      version: 1.0.0
+    components:
+      securitySchemes:
+        Bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+    paths:
+      ### CUSTOMER PATHS ###
+      /api/customers/health-check:
+        get:
+          tags:
+            - Customers
+          responses:
+            200:
+              description: Module Customer running
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message: { type: string, example: Module Customer up and running! }
+      /api/customers:
+        post:
+          tags:
+            - Customers
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name: { type: string, example: Peter }
+                    address: { type: string, example: Fake street 123 }
+                    age: { type: number, example: 30 }
+                    employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+          responses:
+            201:
+              description: Customer created
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      customerId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+      /api/customers/{id}:
+        get:
+          tags:
+            - Customers
+          responses:
+            200:
+              description: Customer data
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+                      name: { type: string, example: Peter }
+                      address: { type: string, example: Fake street 123 }
+                      age: { type: number, example: 30 }
+                      employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+        patch:
+          tags:
+            - Customers
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    name: { type: string, example: Peter }
+                    address: { type: string, example: Fake street 123 }
+                    age: { type: number, example: 30 }
+          responses:
+            200:
+              description: Customer data
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      id: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+                      name: { type: string, example: Peter }
+                      address: { type: string, example: Fake street 123 }
+                      age: { type: number, example: 30 }
+                      employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
+        delete:
+          tags:
+            - Customers
+          responses:
+            204:
+              description: Customer deleted
+
+      ### EMPLOYEE PATHS ###
+      /api/employee/health-check:
+        get:
+          tags:
+            - Employee
+          responses:
+            200:
+              description: Module Employee running
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message: { type: string, example: Module Employee up and running! }
+
+      ### RENTAL PATHS ###
+      /api/rental/health-check:
+        get:
+          tags:
+            - Rental
+          responses:
+            200:
+              description: Module Rental running
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      message: { type: string, example: Module Rental up and running! }
+
+  areas: # to filter documented areas
+    path_patterns:
+      - ^/api(?!/doc|/doc.json$) # Accepts routes under /api except /api/doc

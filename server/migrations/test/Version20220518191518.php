@@ -34,7 +34,7 @@ final class Version20220518191518 extends AbstractMigration
                     INDEX IDX_employee_name (`name`)
                 );
 
-                CREATE TABLE `rent_db_test`.`car` (
+                CREATE TABLE `rental_db_test`.`car` (
                     `id` CHAR(36) PRIMARY KEY NOT NULL,
                     `brand` VARCHAR(50) NOT NULL,
                     `model` VARCHAR(50) NOT NULL,
@@ -44,15 +44,15 @@ final class Version20220518191518 extends AbstractMigration
                     INDEX IDX_car_color (`color`)
                 );
 
-                CREATE TABLE `rent_db_test`.`rent` (
+                CREATE TABLE `rental_db_test`.`rental` (
                     `id` CHAR(36) PRIMARY KEY NOT NULL,
                     `customer_id` CHAR(36) NOT NULL,
                     `employee_id` CHAR(36) NOT NULL,
                     `car_id` CHAR(36) NOT NULL,
-                    INDEX IDX_rent_customer_id (`customer_id`),
-                    INDEX IDX_rent_employee_id (`employee_id`),
-                    INDEX IDX_rent_car_id (`car_id`),
-                    CONSTRAINT FK_rent_car_id FOREIGN KEY (`car_id`) REFERENCES `rent_db`.`car`(`id`) ON UPDATE CASCADE ON DELETE CASCADE 
+                    INDEX IDX_rental_customer_id (`customer_id`),
+                    INDEX IDX_rental_employee_id (`employee_id`),
+                    INDEX IDX_rental_car_id (`car_id`),
+                    CONSTRAINT FK_rental_car_id FOREIGN KEY (`car_id`) REFERENCES `rental_db`.`car`(`id`) ON UPDATE CASCADE ON DELETE CASCADE 
                 );
             SQL
         );
@@ -62,8 +62,8 @@ final class Version20220518191518 extends AbstractMigration
     {
         $this->addSql(
             <<<SQL
-                DROP TABLE `rent_db_test`.`rent`;
-                DROP TABLE `rent_db_test`.`car`;
+                DROP TABLE `rental_db_test`.`rental`;
+                DROP TABLE `rental_db_test`.`car`;
                 DROP TABLE `customer_db_test`.`customer`;
                 DROP TABLE `employee_db_test`.`employee`;
             SQL
