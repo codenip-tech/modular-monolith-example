@@ -8,7 +8,6 @@ use Customer\Adapter\Framework\Http\DTO\CreateCustomerRequestDTO;
 use Customer\Application\UseCase\Customer\CreateCustomer\CreateCustomer;
 use Customer\Application\UseCase\Customer\CreateCustomer\DTO\CreateCustomerInputDTO;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -23,6 +22,6 @@ class CreateCustomerController extends AbstractController
     {
         $responseDTO = $this->service->handle(CreateCustomerInputDTO::create($request->name, $request->email, $request->address, $request->age, $request->employeeId));
 
-        return new JsonResponse(['customerId' => $responseDTO->id], Response::HTTP_CREATED);
+        return $this->json(['customerId' => $responseDTO->id], Response::HTTP_CREATED);
     }
 }

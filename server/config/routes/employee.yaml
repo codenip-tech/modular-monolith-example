@@ -1,4 +1,0 @@
-employee_health_check:
-  path: /health-check
-  controller: Employee\Controller\HealthCheckController
-  methods: [ GET ]
