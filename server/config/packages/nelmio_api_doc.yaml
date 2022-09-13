@@ -35,6 +35,7 @@ nelmio_api_doc:
                   type: object
                   properties:
                     name: { type: string, example: Peter }
+                    email: { type: string, example: peter@api.com }
                     address: { type: string, example: Fake street 123 }
                     age: { type: number, example: 30 }
                     employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
@@ -61,6 +62,7 @@ nelmio_api_doc:
                     properties:
                       id: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
                       name: { type: string, example: Peter }
+                      email: { type: string, example: peter@api.com }
                       address: { type: string, example: Fake street 123 }
                       age: { type: number, example: 30 }
                       employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
@@ -74,6 +76,7 @@ nelmio_api_doc:
                   type: object
                   properties:
                     name: { type: string, example: Peter }
+                    email: { type: string, example: peter@api.com }
                     address: { type: string, example: Fake street 123 }
                     age: { type: number, example: 30 }
           responses:
@@ -86,6 +89,7 @@ nelmio_api_doc:
                     properties:
                       id: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
                       name: { type: string, example: Peter }
+                      email: { type: string, example: peter@api.com }
                       address: { type: string, example: Fake street 123 }
                       age: { type: number, example: 30 }
                       employeeId: { type: string, example: 2d995fa5-7da7-4f49-94ad-b6bed527dca9 }
@@ -97,7 +101,7 @@ nelmio_api_doc:
               description: Customer deleted
 
       ### EMPLOYEE PATHS ###
-      /api/employee/health-check:
+      /api/employees/health-check:
         get:
           tags:
             - Employee
@@ -112,7 +116,7 @@ nelmio_api_doc:
                       message: { type: string, example: Module Employee up and running! }
 
       ### RENTAL PATHS ###
-      /api/rental/health-check:
+      /api/rentals/health-check:
         get:
           tags:
             - Rental

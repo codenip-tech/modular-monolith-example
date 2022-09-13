@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Employee\:
+    resource: '../../src/Employee/'
+    exclude: '../../src/Employee/Entity/'

@@ -6,7 +6,7 @@ services:
   Customer\:
     resource: '../../../../../Customer/'
     exclude:
-      - '../../../Domain/Model/'
+      - '../../../../../Customer/Domain/Model/'
 
   Customer\Adapter\Framework\Http\Controller\:
     resource: '../../../../../Customer/Adapter/Framework/Http/Controller/'
