@@ -52,7 +52,7 @@ final class Version20220518191518 extends AbstractMigration
                     `customer_id` CHAR(36) NOT NULL,
                     `employee_id` CHAR(36) NOT NULL,
                     `car_id` CHAR(36) NOT NULL,
-                    `start_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    `start_date` DATETIME DEFAULT NULL,
                     `end_date` DATETIME DEFAULT NULL,
                     INDEX IDX_rental_customer_id (`customer_id`),
                     INDEX IDX_rental_employee_id (`employee_id`),
