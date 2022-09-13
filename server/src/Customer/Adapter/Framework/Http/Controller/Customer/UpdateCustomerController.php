@@ -8,7 +8,6 @@ use Customer\Adapter\Framework\Http\DTO\UpdateCustomerRequestDTO;
 use Customer\Application\UseCase\Customer\UpdateCustomer\DTO\UpdateCustomerInputDTO;
 use Customer\Application\UseCase\Customer\UpdateCustomer\UpdateCustomer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,6 +24,6 @@ class UpdateCustomerController extends AbstractController
 
         $responseDTO = $this->useCase->handle($inputDTO);
 
-        return new JsonResponse($responseDTO->customerData);
+        return $this->json($responseDTO->customerData);
     }
 }

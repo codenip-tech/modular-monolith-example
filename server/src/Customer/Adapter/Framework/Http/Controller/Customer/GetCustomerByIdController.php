@@ -8,7 +8,6 @@ use Customer\Adapter\Framework\Http\DTO\GetCustomerByIdRequestDTO;
 use Customer\Application\UseCase\Customer\GetCustomerById\DTO\GetCustomerByIdInputDTO;
 use Customer\Application\UseCase\Customer\GetCustomerById\GetCustomerById;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,6 +23,6 @@ class GetCustomerByIdController extends AbstractController
     {
         $responseDTO = $this->useCase->handle(GetCustomerByIdInputDTO::create($request->id));
 
-        return new JsonResponse($responseDTO);
+        return $this->json($responseDTO);
     }
 }
