@@ -3,6 +3,8 @@
     <entity name="Employee\Entity\Employee" table="employee">
         <id name="id" type="string" />
 
-        <field name="name" length="50" />
+        <field name="name" length="50" nullable="true" />
+        <field name="email" length="100" nullable="true" />
+        <field name="password" length="250" nullable="true" />
     </entity>
 </doctrine-mapping>

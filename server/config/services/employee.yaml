@@ -6,3 +6,7 @@ services:
   Employee\:
     resource: '../../src/Employee/'
     exclude: '../../src/Employee/Entity/'
+
+  Employee\Command\:
+    resource: '../../src/Employee/Command/'
+    tags: [ 'console.command' ]
