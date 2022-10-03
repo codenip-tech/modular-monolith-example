@@ -12,5 +12,7 @@ interface EmployeeRepository
 
     public function remove(Employee $employee): void;
 
+    public function findOneByEmail(string $email): ?Employee;
+
     public function findOneByEmailOrFail(string $email): Employee;
 }
