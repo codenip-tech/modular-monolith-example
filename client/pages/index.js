@@ -1,6 +1,6 @@
 import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm, Controller } from 'react-hook-form'
+import {yupResolver} from '@hookform/resolvers/yup'
+import {useForm, Controller} from 'react-hook-form'
 import {
   Flex,
   Heading,
@@ -8,23 +8,19 @@ import {
   Button,
   InputGroup,
   Stack,
-  InputLeftElement,
   chakra,
   Box,
-  Link,
   Avatar,
   FormControl,
-  FormHelperText,
   InputRightElement,
   Text,
 } from '@chakra-ui/react'
-import { FaUserAlt, FaLock } from 'react-icons/fa'
-import { useState } from 'react'
-
-const CFaUserAlt = chakra(FaUserAlt)
-const CFaLock = chakra(FaLock)
+import {useState} from 'react'
+import {decodeToken, login} from "../src/service/api/auth/auth.service";
+import {useRouter} from "next/router";
 
 export default function Home() {
+  const router = useRouter()
   const validationSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is mandatory'),
     password: yup
@@ -36,7 +32,7 @@ export default function Home() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
   } = useForm({
     resolver: yupResolver(validationSchema),
   })
@@ -46,8 +42,16 @@ export default function Home() {
   const handleShowClick = () => setShowPassword(!showPassword)
 
   const onSubmitForm = async (data) => {
-    console.log(data)
-    // TODO: API call to Google OAuth
+    try {
+      const response = await login(data.email.trim(), data.password.trim())
+      const token = response.data.token
+      const payload = decodeToken(token)
+      console.log(payload)
+
+      await router.push('/dashboard')
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (
@@ -65,9 +69,9 @@ export default function Home() {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="teal.500" />
+        <Avatar bg="teal.500"/>
         <Heading color="teal.400">Codenip Car Rental</Heading>
-        <Box minW={{ base: '90%', md: '468px' }}>
+        <Box minW={{base: '90%', md: '468px'}}>
           <form onSubmit={handleSubmit(onSubmitForm)}>
             <Stack
               spacing={4}
@@ -81,7 +85,7 @@ export default function Home() {
                     control={control}
                     name="email"
                     defaultValue=""
-                    render={({ field: { onChange, value, ref } }) => (
+                    render={({field: {onChange, value, ref}}) => (
                       <Input
                         type="email"
                         placeholder="email address"
@@ -102,7 +106,7 @@ export default function Home() {
                     control={control}
                     name="password"
                     defaultValue=""
-                    render={({ field: { onChange, value, ref } }) => (
+                    render={({field: {onChange, value, ref}}) => (
                       <Input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="password"

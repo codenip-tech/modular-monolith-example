@@ -10,3 +10,7 @@ services:
   Employee\Command\:
     resource: '../../src/Employee/Command/'
     tags: [ 'console.command' ]
+
+  Employee\Service\Security\Listener\JWTCreatedListener:
+    tags:
+      - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }

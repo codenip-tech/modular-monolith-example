@@ -4,7 +4,6 @@ namespace Employee\Service;
 
 use Employee\Entity\Employee;
 use Employee\Exception\EmployeeAlreadyExistsException;
-use Employee\Exception\ResourceNotFoundException;
 use Employee\Repository\EmployeeRepository;
 use Employee\Service\Security\PasswordHasherInterface;
 use Symfony\Component\Uid\Uuid;

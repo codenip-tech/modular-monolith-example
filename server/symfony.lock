@@ -116,11 +116,32 @@
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
+    "lcobucci/clock": {
+        "version": "2.2.0"
+    },
+    "lcobucci/jwt": {
+        "version": "4.2.1"
+    },
+    "lexik/jwt-authentication-bundle": {
+        "version": "2.16",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.5",
+            "ref": "5b2157bcd5778166a5696e42f552ad36529a07a6"
+        },
+        "files": [
+            "config/packages/lexik_jwt_authentication.yaml"
+        ]
+    },
     "monolog/monolog": {
         "version": "2.6.0"
     },
     "myclabs/deep-copy": {
         "version": "1.11.0"
+    },
+    "namshi/jose": {
+        "version": "7.2.3"
     },
     "nelmio/api-doc-bundle": {
         "version": "4.9",
@@ -133,6 +154,18 @@
         "files": [
             "config/packages/nelmio_api_doc.yaml",
             "config/routes/nelmio_api_doc.yaml"
+        ]
+    },
+    "nelmio/cors-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
         ]
     },
     "nikic/php-parser": {
@@ -259,6 +292,9 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "stella-maris/clock": {
+        "version": "0.1.6"
     },
     "symfony/asset": {
         "version": "v5.4.7"
@@ -401,6 +437,9 @@
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.25.0"
+    },
+    "symfony/polyfill-php56": {
+        "version": "v1.20.0"
     },
     "symfony/polyfill-php73": {
         "version": "v1.25.0"
