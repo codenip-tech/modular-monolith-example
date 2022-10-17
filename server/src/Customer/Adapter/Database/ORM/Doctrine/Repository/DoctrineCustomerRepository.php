@@ -20,7 +20,7 @@ class DoctrineCustomerRepository implements CustomerRepository
     public function __construct(ManagerRegistry $managerRegistry)
     {
         $this->repository = new ServiceEntityRepository($managerRegistry, Customer::class);
-        $this->manager = $managerRegistry->getManager();
+        $this->manager = $managerRegistry->getManager('customer_em');
     }
 
     public function findOneByIdOrFail(string $id): Customer

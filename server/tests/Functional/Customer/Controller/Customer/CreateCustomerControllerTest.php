@@ -22,9 +22,9 @@ class CreateCustomerControllerTest extends CustomerControllerTestBase
             'employeeId' => 'd368263a-ab71-4587-960d-cfe9725c373f',
         ];
 
-        self::$client->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
+        self::$admin->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
 
-        $response = self::$client->getResponse();
+        $response = self::$admin->getResponse();
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
@@ -33,9 +33,9 @@ class CreateCustomerControllerTest extends CustomerControllerTestBase
 
         $generatedCustomerId = $responseData['customerId'];
 
-        self::$client->request(Request::METHOD_GET, \sprintf('/api/customers/%s', $generatedCustomerId));
+        self::$admin->request(Request::METHOD_GET, \sprintf('/api/customers/%s', $generatedCustomerId));
 
-        $response = self::$client->getResponse();
+        $response = self::$admin->getResponse();
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());

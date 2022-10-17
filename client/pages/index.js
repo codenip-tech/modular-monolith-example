@@ -1,6 +1,6 @@
 import * as yup from 'yup'
-import {yupResolver} from '@hookform/resolvers/yup'
-import {useForm, Controller} from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm, Controller } from 'react-hook-form'
 import {
   Flex,
   Heading,
@@ -15,12 +15,15 @@ import {
   InputRightElement,
   Text,
 } from '@chakra-ui/react'
-import {useState} from 'react'
-import {decodeToken, login} from "../src/service/api/auth/auth.service";
-import {useRouter} from "next/router";
+import { useState } from 'react'
+import { decodeToken, login } from '../src/service/api/auth/auth.service'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import { saveUser } from '../src/redux/reducer/auth'
 
 export default function Home() {
   const router = useRouter()
+  const dispatch = useDispatch()
   const validationSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is mandatory'),
     password: yup
@@ -32,7 +35,7 @@ export default function Home() {
   const {
     control,
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
   })
@@ -46,7 +49,8 @@ export default function Home() {
       const response = await login(data.email.trim(), data.password.trim())
       const token = response.data.token
       const payload = decodeToken(token)
-      console.log(payload)
+
+      dispatch(saveUser(token, payload))
 
       await router.push('/dashboard')
     } catch (e) {
@@ -69,9 +73,9 @@ export default function Home() {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="teal.500"/>
+        <Avatar bg="teal.500" />
         <Heading color="teal.400">Codenip Car Rental</Heading>
-        <Box minW={{base: '90%', md: '468px'}}>
+        <Box minW={{ base: '90%', md: '468px' }}>
           <form onSubmit={handleSubmit(onSubmitForm)}>
             <Stack
               spacing={4}
@@ -85,7 +89,7 @@ export default function Home() {
                     control={control}
                     name="email"
                     defaultValue=""
-                    render={({field: {onChange, value, ref}}) => (
+                    render={({ field: { onChange, value, ref } }) => (
                       <Input
                         type="email"
                         placeholder="email address"
@@ -106,7 +110,7 @@ export default function Home() {
                     control={control}
                     name="password"
                     defaultValue=""
-                    render={({field: {onChange, value, ref}}) => (
+                    render={({ field: { onChange, value, ref } }) => (
                       <Input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="password"

@@ -21,9 +21,9 @@ class UpdateCustomerControllerTest extends CustomerControllerTestBase
         // create a customer
         $customerId = $this->createCustomer();
         // update a customer
-        self::$client->request(Request::METHOD_PATCH, \sprintf(self::ENDPOINT, $customerId), [], [], [], \json_encode($payload));
+        self::$admin->request(Request::METHOD_PATCH, \sprintf(self::ENDPOINT, $customerId), [], [], [], \json_encode($payload));
         // checks
-        $response = self::$client->getResponse();
+        $response = self::$admin->getResponse();
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
@@ -41,9 +41,9 @@ class UpdateCustomerControllerTest extends CustomerControllerTestBase
 
         $customerId = $this->createCustomer();
 
-        self::$client->request(Request::METHOD_PATCH, \sprintf(self::ENDPOINT, $customerId), [], [], [], \json_encode($payload));
+        self::$admin->request(Request::METHOD_PATCH, \sprintf(self::ENDPOINT, $customerId), [], [], [], \json_encode($payload));
 
-        $response = self::$client->getResponse();
+        $response = self::$admin->getResponse();
 
         self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
@@ -54,9 +54,9 @@ class UpdateCustomerControllerTest extends CustomerControllerTestBase
             'name' => 'Brian',
         ];
 
-        self::$client->request(Request::METHOD_PATCH, \sprintf(self::ENDPOINT, self::NON_EXISTING_CUSTOMER_ID), [], [], [], \json_encode($payload));
+        self::$admin->request(Request::METHOD_PATCH, \sprintf(self::ENDPOINT, self::NON_EXISTING_CUSTOMER_ID), [], [], [], \json_encode($payload));
 
-        $response = self::$client->getResponse();
+        $response = self::$admin->getResponse();
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());

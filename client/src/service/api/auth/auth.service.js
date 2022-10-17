@@ -6,7 +6,7 @@ const routes = {
 }
 
 export const login = async (username, password) => {
-  return await post(routes.login, {username, password})
+  return await post(routes.login, { username, password })
 }
 
 export const decodeToken = (token) => {
