@@ -1,10 +1,10 @@
 import { Heading } from '@chakra-ui/react'
 import SidebarWithHeader from '../../src/component/sidebar/sidebar'
 
-export default function Dashboard() {
+export default function Cars() {
   return (
     <SidebarWithHeader>
-      <Heading>Welcome to Codenip Car Rental System!</Heading>
+      <Heading>Cars list!</Heading>
     </SidebarWithHeader>
   )
 }

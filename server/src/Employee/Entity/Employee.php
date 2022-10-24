@@ -77,4 +77,9 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // TODO: Implement @method string getUserIdentifier()
     }
+
+    public function equals(Employee $employee): bool
+    {
+        return $this->id === $employee->id;
+    }
 }

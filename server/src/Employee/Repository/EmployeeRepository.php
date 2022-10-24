@@ -15,4 +15,6 @@ interface EmployeeRepository
     public function findOneByEmail(string $email): ?Employee;
 
     public function findOneByEmailOrFail(string $email): Employee;
+
+    public function findOneByIdOrFail(string $id): Employee;
 }

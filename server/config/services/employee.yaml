@@ -2,6 +2,8 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
+    bind:
+      $baseUrl: '%env(resolve:BASE_URL)%'
 
   Employee\:
     resource: '../../src/Employee/'

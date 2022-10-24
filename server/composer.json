@@ -10,6 +10,7 @@
         "doctrine/doctrine-bundle": "^2.6",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.12",
+        "guzzlehttp/guzzle": "^7.5",
         "lexik/jwt-authentication-bundle": "^2.16",
         "nelmio/api-doc-bundle": "^4.9",
         "nelmio/cors-bundle": "^2.2",
