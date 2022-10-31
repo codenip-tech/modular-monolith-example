@@ -15,9 +15,17 @@ final class GetEmployeeCustomers
     ) {
     }
 
-    public function execute(string $employeeId): array
+    public function execute(string $employeeId, int $page, int $limit): array
     {
-        $response = $this->httpClient->get(\sprintf('%s?employeeId=%s', self::SEARCH_CUSTOMERS_ENDPOINT, $employeeId));
+        $response = $this->httpClient->get(
+            \sprintf(
+                '%s?employeeId=%s&page=%s&limit=%s',
+                self::SEARCH_CUSTOMERS_ENDPOINT,
+                $employeeId,
+                $page,
+                $limit,
+            )
+        );
 
         return \json_decode($response->getBody()->getContents(), true, 512, \JSON_THROW_ON_ERROR);
     }

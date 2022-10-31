@@ -114,6 +114,44 @@ nelmio_api_doc:
                     type: object
                     properties:
                       message: { type: string, example: Module Employee up and running! }
+      /api/employees/{id}/customers:
+        get:
+          tags:
+            - Employee
+          parameters:
+            - in: query
+              name: page
+              schema:
+                type: number
+              required: false
+            - in: query
+              name: limit
+              schema:
+                type: number
+              required: false
+          responses:
+            200:
+              description: Collection of customers per employee id
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id: { type: string }
+                            name: { type: string }
+                            address: { type: string }
+                      meta:
+                        type: object
+                        properties:
+                          total: { type: number, example: 2 }
+                          page: { type: number, example: 1 }
+                          limit: { type: number, example: 10 }
+                          hasNext: { type: boolean, example: true }
 
       ### RENTAL PATHS ###
       /api/rentals/health-check:

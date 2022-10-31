@@ -22,10 +22,12 @@ final class GetCustomersController extends AbstractController
     public function __invoke(Request $request): Response
     {
         $employeeId = $request->attributes->get('id');
+        $page = $request->query->getInt('page');
+        $limit = $request->query->getInt('limit');
 
         $this->denyAccessUnlessGranted(EmployeeVoter::GET_EMPLOYEE_CUSTOMERS, $employeeId);
 
-        $customers = $this->service->execute($employeeId);
+        $customers = $this->service->execute($employeeId, $page, $limit);
 
         return $this->json($customers);
     }

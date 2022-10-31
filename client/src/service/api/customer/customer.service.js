@@ -1,9 +1,9 @@
 import { get } from '../api.service'
 
 const routes = {
-  base: 'customers',
+  base: 'employees',
 }
 
-export const searchCustomers = async (filters) => {
-  return await get(`${routes.base}${filters}`)
+export const searchCustomers = async (id, filters) => {
+  return await get(`${routes.base}/${id}/customers${filters}`)
 }
