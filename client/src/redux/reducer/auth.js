@@ -12,6 +12,7 @@ const AuthReducer = (state = initialState, action) => {
         id: action.payload.id,
         email: action.payload.username,
         token: action.token,
+        name: action.payload.name,
       }
     case FROM_LOCAL_STORAGE:
       return {
@@ -19,6 +20,7 @@ const AuthReducer = (state = initialState, action) => {
         id: action.values.id,
         email: action.values.email,
         token: action.values.token,
+        name: action.values.name,
       }
     case LOGOUT:
       return {}

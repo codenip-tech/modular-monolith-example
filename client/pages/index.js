@@ -8,22 +8,25 @@ import {
   Button,
   InputGroup,
   Stack,
-  chakra,
   Box,
   Avatar,
   FormControl,
   InputRightElement,
   Text,
+  useToast,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { decodeToken, login } from '../src/service/api/auth/auth.service'
 import { useRouter } from 'next/router'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { saveUser } from '../src/redux/reducer/auth'
 
 export default function Home() {
   const router = useRouter()
   const dispatch = useDispatch()
+  const token = useSelector((state) => state.auth.token)
+  const toast = useToast()
+
   const validationSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is mandatory'),
     password: yup
@@ -54,9 +57,25 @@ export default function Home() {
 
       await router.push('/dashboard')
     } catch (e) {
-      console.log(e)
+      toast({
+        title: 'Invalid credential.',
+        description: 'Invalid email or password. Please try again!',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      })
     }
   }
+
+  useEffect(() => {
+    async function toDashboard() {
+      await router.push('/dashboard')
+    }
+
+    if (undefined !== token) {
+      toDashboard()
+    }
+  })
 
   return (
     <Flex
