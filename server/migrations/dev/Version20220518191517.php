@@ -26,7 +26,8 @@ final class Version20220518191517 extends AbstractMigration
                     `age` SMALLINT NOT NULL,
                     `employee_id` CHAR(36) NOT NULL,
                     INDEX IDX_customer_name (`name`),
-                    INDEX IDX_employee_id (`employee_id`)
+                    INDEX IDX_employee_id (`employee_id`),
+                    UNIQUE U_customer_email (`email`)
                 );
 
                 CREATE TABLE `employee_db`.`employee` (
@@ -34,7 +35,8 @@ final class Version20220518191517 extends AbstractMigration
                     `name` VARCHAR(50) DEFAULT NULL,
                     `email` VARCHAR(100) DEFAULT NULL,
                     `password` VARCHAR(250) DEFAULT NULL,
-                    INDEX IDX_employee_name (`name`)
+                    INDEX IDX_employee_name (`name`),
+                    UNIQUE U_employee_email (`email`)
                 );
 
                 CREATE TABLE `rental_db`.`car` (

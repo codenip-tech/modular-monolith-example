@@ -16,18 +16,18 @@ class DeleteCustomerControllerTest extends CustomerControllerTestBase
     {
         $customerId = $this->createCustomer();
 
-        self::$client->request(Request::METHOD_DELETE, \sprintf(self::ENDPOINT, $customerId));
+        self::$admin->request(Request::METHOD_DELETE, \sprintf(self::ENDPOINT, $customerId));
 
-        $response = self::$client->getResponse();
+        $response = self::$admin->getResponse();
 
         self::assertEquals(Response::HTTP_NO_CONTENT, $response->getStatusCode());
     }
 
     public function testDeleteNonExistingCustomer(): void
     {
-        self::$client->request(Request::METHOD_DELETE, \sprintf(self::ENDPOINT, self::NON_EXISTING_CUSTOMER_ID));
+        self::$admin->request(Request::METHOD_DELETE, \sprintf(self::ENDPOINT, self::NON_EXISTING_CUSTOMER_ID));
 
-        $response = self::$client->getResponse();
+        $response = self::$admin->getResponse();
 
         self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }

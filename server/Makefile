@@ -52,6 +52,9 @@ code-style:
 
 code-style-check:
 	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} vendor/bin/php-cs-fixer fix src --rules=@Symfony --dry-run
+
+generate-ssh-keys: ## Generates SSH keys for JWT authentication
+	U_ID=${UID} docker exec --user ${UID} ${DOCKER_BE} bin/console lexik:jwt:generate-keypair
 # End backend commands
 
 ssh-be: ## bash into the be container

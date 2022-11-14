@@ -1,0 +1,9 @@
+Customer\Domain\Model\Customer:
+  Customer-{0..99}:
+    __construct:
+      id (unique): <uuid()>
+      name: <firstName()>
+      email (unique): <email()>
+      address (unique): <address()>
+      age: <numberBetween(18, 40)>
+      employeeId: 'b095a15c-c605-4afd-99ae-e1b62b10ee5a'

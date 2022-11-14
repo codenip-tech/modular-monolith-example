@@ -2,7 +2,17 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
+    bind:
+      $baseUrl: '%env(resolve:BASE_URL)%'
 
   Employee\:
     resource: '../../src/Employee/'
     exclude: '../../src/Employee/Entity/'
+
+  Employee\Command\:
+    resource: '../../src/Employee/Command/'
+    tags: [ 'console.command' ]
+
+  Employee\Service\Security\Listener\JWTCreatedListener:
+    tags:
+      - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }

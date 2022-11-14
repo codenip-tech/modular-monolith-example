@@ -26,4 +26,4 @@ jobs:
         with:
           time: '10s'
       - name: Run tests
-        run: make migrations-test && make tests
+        run: make migrations-test && make generate-ssh-keys && make tests

@@ -9,7 +9,7 @@ doctrine:
       rental_connection:
         url: '%env(resolve:DATABASE_URL_RENTAL)%'
   orm:
-    default_entity_manager: customer_em
+    default_entity_manager: employee_em
     entity_managers:
       customer_em:
         connection: customer_connection
