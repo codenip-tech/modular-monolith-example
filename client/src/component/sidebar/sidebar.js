@@ -18,10 +18,13 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  useColorMode,
+  Button,
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { FiMenu, FiBell, FiChevronDown } from 'react-icons/fi'
 import { BsFillCalendar2WeekFill, BsPersonFill, BsTruck } from 'react-icons/bs'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 import { FaFileContract } from 'react-icons/fa'
 import { useRouter } from 'next/router'
@@ -36,6 +39,7 @@ const LinkItems = [
 ]
 
 export default function SidebarWithHeader({ children }) {
+  const { colorMode, toggleColorMode } = useColorMode()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter()
   const dispatch = useDispatch()
@@ -80,7 +84,13 @@ export default function SidebarWithHeader({ children }) {
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
-      <MobileNav onOpen={onOpen} name={username} handleLogout={handleLogout} />
+      <MobileNav
+        onOpen={onOpen}
+        name={username}
+        handleLogout={handleLogout}
+        colorMode={colorMode}
+        toggleColorMode={toggleColorMode}
+      />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
@@ -151,7 +161,14 @@ const NavItem = ({ icon, children, path, ...rest }) => {
   )
 }
 
-const MobileNav = ({ onOpen, name, handleLogout, ...rest }) => {
+const MobileNav = ({
+  onOpen,
+  name,
+  handleLogout,
+  colorMode,
+  toggleColorMode,
+  ...rest
+}) => {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -183,6 +200,9 @@ const MobileNav = ({ onOpen, name, handleLogout, ...rest }) => {
 
       <HStack spacing={{ base: '0', md: '6' }}>
         <Flex alignItems={'center'}>
+          <Button onClick={toggleColorMode} mr={5}>
+            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          </Button>
           <Menu>
             <MenuButton
               py={2}

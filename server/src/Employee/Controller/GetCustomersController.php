@@ -24,10 +24,13 @@ final class GetCustomersController extends AbstractController
         $employeeId = $request->attributes->get('id');
         $page = $request->query->getInt('page');
         $limit = $request->query->getInt('limit');
+        $name = $request->query->get('name');
+        $sort = $request->query->get('sort');
+        $order = $request->query->get('order');
 
         $this->denyAccessUnlessGranted(EmployeeVoter::GET_EMPLOYEE_CUSTOMERS, $employeeId);
 
-        $customers = $this->service->execute($employeeId, $page, $limit);
+        $customers = $this->service->execute($employeeId, $page, $limit, $sort, $order, $name);
 
         return $this->json($customers);
     }

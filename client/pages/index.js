@@ -14,6 +14,7 @@ import {
   InputRightElement,
   Text,
   useToast,
+  useColorMode,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { decodeToken, login } from '../src/service/api/auth/auth.service'
@@ -22,6 +23,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { saveUser } from '../src/redux/reducer/auth'
 
 export default function Home() {
+  const { colorMode, toggleColorMode } = useColorMode()
   const router = useRouter()
   const dispatch = useDispatch()
   const token = useSelector((state) => state.auth.token)
@@ -74,6 +76,12 @@ export default function Home() {
 
     if (undefined !== token) {
       toDashboard()
+    }
+  })
+
+  useEffect(() => {
+    if ('dark' === colorMode) {
+      toggleColorMode()
     }
   })
 

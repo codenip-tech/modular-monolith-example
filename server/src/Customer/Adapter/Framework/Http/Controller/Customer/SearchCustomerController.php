@@ -21,7 +21,14 @@ final class SearchCustomerController extends AbstractController
     #[Route('', name: 'search_customers', methods: ['GET'])]
     public function __invoke(GetCustomersRequest $request): Response
     {
-        $filter = new CustomerFilter($request->page, $request->limit, $request->employeeId);
+        $filter = new CustomerFilter(
+            $request->page,
+            $request->limit,
+            $request->employeeId,
+            $request->sort,
+            $request->order,
+            $request->name
+        );
 
         $output = $this->useCase->execute($filter);
 

@@ -1,4 +1,12 @@
-import { Heading } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Icon,
+  Input,
+} from '@chakra-ui/react'
 import SidebarWithHeader from '../../src/component/sidebar/sidebar'
 import { useSelector } from 'react-redux'
 import { searchCustomers } from '../../src/service/api/customer/customer.service'
@@ -13,6 +21,7 @@ import {
   TableContainer,
 } from '@chakra-ui/react'
 import InfiniteScroll from '../../src/component/common/infinite-scroll'
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 
 export default function Customers() {
   const id = useSelector((state) => state.auth.id)
@@ -23,6 +32,26 @@ export default function Customers() {
     hasNext: false,
     total: 0,
   })
+  const [filters, setFilters] = useState({
+    name: '',
+  })
+  const [sorting, setSorting] = useState({
+    sort: 'name',
+    order: 'asc',
+  })
+
+  const buildFilters = useCallback(
+    (page, limit) => {
+      let result = `?page=${page}&limit=${limit}&sort=${sorting.sort}&order=${sorting.order}`
+
+      if ('' !== filters.name) {
+        result += `&name=${filters.name}`
+      }
+
+      return result
+    },
+    [filters, sorting],
+  )
 
   const search = useCallback(
     async (page = 1, limit = 30, loadMore = false) => {
@@ -41,23 +70,68 @@ export default function Customers() {
     [id, customers, buildFilters],
   )
 
-  const buildFilters = useCallback((page, limit) => {
-    return `?page=${page}&limit=${limit}`
-  }, [])
-
   useEffect(() => {
     search()
-  }, []) // eslint-disable-line
+  }, [filters, sorting]) // eslint-disable-line
 
   return (
     <SidebarWithHeader>
       <Heading>Customers list</Heading>
+      <Flex display={{ md: 'flex' }} alignItems="start" mt={5} mb={5}>
+        <Box>
+          <FormControl>
+            <Input
+              name="name"
+              size="lg"
+              type="search"
+              placeholder="Customer name..."
+              onChange={(e) => {
+                if ('' === e.target.value) {
+                  setFilters((prevState) => {
+                    return {
+                      ...prevState,
+                      name: e.target.value,
+                    }
+                  })
+                }
+              }}
+              onKeyDown={(e) => {
+                if (e.code === 'Enter') {
+                  setFilters((prevState) => {
+                    return {
+                      ...prevState,
+                      name: e.target.value,
+                    }
+                  })
+                }
+              }}
+            />
+          </FormControl>
+        </Box>
+      </Flex>
       <TableContainer>
         <Table variant="simple">
           <Thead>
             <Tr>
               <Th>ID</Th>
-              <Th>Name</Th>
+              <Th>
+                Name
+                <Icon
+                  style={{
+                    display: sorting.sort === 'name' ? 'inline' : 'none',
+                  }}
+                  as={sorting.order === 'asc' ? FiChevronDown : FiChevronUp}
+                  onClick={() => {
+                    setSorting((prevState) => {
+                      return {
+                        ...prevState,
+                        sort: 'name',
+                        order: 'asc' === prevState.order ? 'desc' : 'asc',
+                      }
+                    })
+                  }}
+                />
+              </Th>
               <Th>Address</Th>
             </Tr>
           </Thead>
