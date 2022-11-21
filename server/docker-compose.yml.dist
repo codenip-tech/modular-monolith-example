@@ -1,37 +1,24 @@
 version: '3.5'
 
 services:
-  modular-monolith-example-web:
-    container_name: modular-monolith-example-web
-    build:
-      context: ./docker/nginx
-      args:
-        UID: $U_ID
-    ports:
-      - '1000:80'
-    volumes:
-      - ./public:/appdata/www/public
-    depends_on:
-      - modular-monolith-example-app
-    networks:
-      - modular-monolith-example-network
-
   modular-monolith-example-app:
     container_name: modular-monolith-example-app
     build:
-      context: ./docker/php
+      context: docker/php-apache
       args:
         UID: $U_ID
     volumes:
-      - ./:/appdata/www
+      - ./:/var/www/html
     ###> XDEBUG 3 ###
     # Use your client IP here
     # Linux: run "ip a | grep docker0"
     # Windows (with WSL2) and Mac: host.docker.internal
     environment:
-      XDEBUG_CLIENT_HOST: 172.17.0.1
+      XDEBUG_CLIENT_HOST: host.docker.internal
       XDEBUG_CLIENT_PORT: 9003
       PHP_IDE_CONFIG: serverName=modular-monolith-example-server
+    ports:
+      - '1000:80'
     networks:
       - modular-monolith-example-network
     depends_on:
