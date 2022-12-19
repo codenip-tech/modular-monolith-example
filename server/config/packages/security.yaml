@@ -29,7 +29,8 @@ security:
       jwt: ~
 
   access_control:
-    - { path: ^/api/customers, roles: PUBLIC_ACCESS }
+    - { path: ^/api/customers, allow_if: "false == request.headers.has('X-Forwarded-For')" }
+    - { path: ^/api/rental, allow_if: "false == request.headers.has('X-Forwarded-For')" }
     - { path: ^/api/doc, roles: PUBLIC_ACCESS }
     - { path: ^/api/login, roles: PUBLIC_ACCESS }
     - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
