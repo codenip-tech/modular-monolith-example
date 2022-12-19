@@ -9,6 +9,7 @@ use Customer\Domain\Exception\ResourceNotFoundException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class JsonTransformerExceptionListener
 {
@@ -28,6 +29,10 @@ class JsonTransformerExceptionListener
 
         if ($e instanceof InvalidArgumentException) {
             $data['code'] = Response::HTTP_BAD_REQUEST;
+        }
+
+        if ($e instanceof AccessDeniedException) {
+            $data['code'] = Response::HTTP_FORBIDDEN;
         }
 
         $response = new JsonResponse($data, $data['code']);
