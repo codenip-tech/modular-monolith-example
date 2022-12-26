@@ -35,6 +35,11 @@ class DoctrineCustomerRepository implements CustomerRepository
         return $customer;
     }
 
+    public function findOneByEmail(string $email): ?Customer
+    {
+        return $this->repository->findOneBy(['email' => $email]);
+    }
+
     public function search(CustomerFilter $filter): PaginatedResponse
     {
         $page = $filter->page;

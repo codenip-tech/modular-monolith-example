@@ -12,6 +12,8 @@ interface CustomerRepository
 {
     public function findOneByIdOrFail(string $id): Customer;
 
+    public function findOneByEmail(string $email);
+
     public function search(CustomerFilter $filter): PaginatedResponse;
 
     public function save(Customer $customer): void;
