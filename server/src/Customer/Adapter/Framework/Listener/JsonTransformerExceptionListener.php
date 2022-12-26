@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Customer\Adapter\Framework\Listener;
 
+use Customer\Domain\Exception\CustomerAlreadyExistsException;
 use Customer\Domain\Exception\InvalidArgumentException;
 use Customer\Domain\Exception\ResourceNotFoundException;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,6 +34,10 @@ class JsonTransformerExceptionListener
 
         if ($e instanceof AccessDeniedException) {
             $data['code'] = Response::HTTP_FORBIDDEN;
+        }
+
+        if ($e instanceof CustomerAlreadyExistsException) {
+            $data['code'] = Response::HTTP_CONFLICT;
         }
 
         $response = new JsonResponse($data, $data['code']);

@@ -2,14 +2,18 @@ import {
   Box,
   Flex,
   FormControl,
-  FormLabel,
   Heading,
   Icon,
+  IconButton,
   Input,
+  Spacer,
 } from '@chakra-ui/react'
 import SidebarWithHeader from '../../src/component/sidebar/sidebar'
 import { useSelector } from 'react-redux'
-import { searchCustomers } from '../../src/service/api/customer/customer.service'
+import {
+  deleteCustomer,
+  searchCustomers,
+} from '../../src/service/api/customer/customer.service'
 import { useCallback, useEffect, useState } from 'react'
 import {
   Table,
@@ -21,10 +25,12 @@ import {
   TableContainer,
 } from '@chakra-ui/react'
 import InfiniteScroll from '../../src/component/common/infinite-scroll'
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import { FiChevronDown, FiChevronUp, FiPlus, FiTrash } from 'react-icons/fi'
+import { useRouter } from 'next/router'
 
 export default function Customers() {
   const id = useSelector((state) => state.auth.id)
+  const router = useRouter()
   const [customers, setCustomers] = useState([])
   const [meta, setMeta] = useState({
     page: 1,
@@ -74,6 +80,21 @@ export default function Customers() {
     search()
   }, [filters, sorting]) // eslint-disable-line
 
+  const remove = async (customerId) => {
+    try {
+      await deleteCustomer(id, customerId)
+      setCustomers(customers.filter((customer) => customerId !== customer.id))
+      setMeta((prevState) => {
+        return {
+          ...prevState,
+          total: meta.total - 1,
+        }
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   return (
     <SidebarWithHeader>
       <Heading>Customers list</Heading>
@@ -108,6 +129,16 @@ export default function Customers() {
             />
           </FormControl>
         </Box>
+        <Spacer />
+        <Box mr="10">
+          <IconButton
+            size="lg"
+            backgroundColor="cyan.400"
+            aria-label="add customer"
+            icon={<FiPlus color="white" />}
+            onClick={() => router.push('/customers/add')}
+          />
+        </Box>
       </Flex>
       <TableContainer>
         <Table variant="simple">
@@ -133,6 +164,7 @@ export default function Customers() {
                 />
               </Th>
               <Th>Address</Th>
+              <Th>Actions</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -141,6 +173,13 @@ export default function Customers() {
                 <Td>{customer.id}</Td>
                 <Td>{customer.name}</Td>
                 <Td>{customer.address}</Td>
+                <Td>
+                  <Icon
+                    as={FiTrash}
+                    color="cyan.500"
+                    onClick={() => remove(customer.id)}
+                  />
+                </Td>
               </Tr>
             ))}
           </Tbody>
