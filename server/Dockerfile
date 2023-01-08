@@ -20,7 +20,7 @@ COPY ./composer.* /var/www/html/
 
 RUN composer install --prefer-dist --no-scripts --no-interaction --no-dev
 
-# Copy project content
+# Copy project content and execute necessary commands
 COPY . /var/www/html/
 RUN /var/www/html/bin/console a:i
 RUN /var/www/html/bin/console lexik:jwt:generate-keypair --skip-if-exists
