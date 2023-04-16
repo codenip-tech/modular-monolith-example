@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Customer\Controller;
+namespace App\Tests\Functional\Customer\Controller\Customer;
 
 use Employee\Entity\Employee;
 use Employee\Repository\EmployeeRepository;

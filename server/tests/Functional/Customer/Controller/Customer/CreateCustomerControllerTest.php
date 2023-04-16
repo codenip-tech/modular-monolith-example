@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Customer\Controller\Customer;
 
-use App\Tests\Functional\Customer\Controller\CustomerControllerTestBase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CreateCustomerControllerTest extends CustomerControllerTestBase
 {
-    private const ENDPOINT = '/api/customers';
 
     public function testCreateCustomerAndCheckIt(): void
     {
@@ -22,7 +20,7 @@ class CreateCustomerControllerTest extends CustomerControllerTestBase
             'employeeId' => 'd368263a-ab71-4587-960d-cfe9725c373f',
         ];
 
-        self::$admin->request(Request::METHOD_POST, self::ENDPOINT, [], [], [], \json_encode($payload));
+        self::$admin->request(Request::METHOD_POST, CustomerControllerTestBase::CREATE_CUSTOMER_ENDPOINT, [], [], [], \json_encode($payload));
 
         $response = self::$admin->getResponse();
         $responseData = $this->getResponseData($response);
@@ -33,7 +31,7 @@ class CreateCustomerControllerTest extends CustomerControllerTestBase
 
         $generatedCustomerId = $responseData['customerId'];
 
-        self::$admin->request(Request::METHOD_GET, \sprintf('/api/customers/%s', $generatedCustomerId));
+        self::$admin->request(Request::METHOD_GET, \sprintf(self::CREATE_CUSTOMER_ENDPOINT . "/%s", $generatedCustomerId));
 
         $response = self::$admin->getResponse();
         $responseData = $this->getResponseData($response);
